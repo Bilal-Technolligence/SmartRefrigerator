@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "1050306015699",
+    "project_id": "smartrefrigerator-19e95",
+    "storage_bucket": "smartrefrigerator-19e95.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:1050306015699:android:75e53e9f056e0341607f26",
+        "android_client_info": {
+          "package_name": "com.example.smartrefrigerator"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "1050306015699-rbsgnnk0dco7l3816ooq4javfoqp91mb.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBHbE4w8WfygN1cBp1Sy-AzhlH1yYg8bMQ"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "1050306015699-rbsgnnk0dco7l3816ooq4javfoqp91mb.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
