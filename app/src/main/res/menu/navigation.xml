@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:aapt="http://schemas.android.com/aapt"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+    <item
+        android:id="@+id/nav_home"
+        android:icon="@drawable/home"
+        android:title="Home" />
+    <item
+        android:id="@+id/nav_diet"
+        android:icon="@drawable/dietplan"
+        android:title="Diet Plan" />
+    <item
+        android:id="@+id/nav_notification"
+        android:icon="@drawable/ic_baseline_notifications_24"
+        android:title="Notifications" />
+    <item
+        android:id="@+id/nav_setting"
+        android:icon="@drawable/setting"
+        android:title="Setting" />
+</menu>
