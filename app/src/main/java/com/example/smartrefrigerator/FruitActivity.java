@@ -33,11 +33,11 @@ public class FruitActivity extends AppCompatActivity {
                         overridePendingTransition(0,0);
                         return true;
                     case R.id.nav_setting:
-                        startActivity(new Intent(getApplicationContext(), DietActivity.class));
+                        startActivity(new Intent(getApplicationContext(), SettingsActivity.class));
                         overridePendingTransition(0,0);
                         return true;
                     case R.id.nav_notification:
-                        startActivity(new Intent(getApplicationContext(), DietActivity.class));
+                        startActivity(new Intent(getApplicationContext(), NotificationActivity.class));
                         overridePendingTransition(0,0);
                         return true;
                 }

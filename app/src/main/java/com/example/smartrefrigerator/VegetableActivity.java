@@ -2,22 +2,19 @@ package com.example.smartrefrigerator;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.cardview.widget.CardView;
 
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.MenuItem;
-import android.view.View;
 
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 
-public class MainActivity extends AppCompatActivity {
-    CardView fruits;
+public class VegetableActivity extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-         setContentView(R.layout.activity_main);
+        setContentView(R.layout.activity_vegetable);
 
         BottomNavigationView bottomNavigationView = findViewById(R.id.navigationView);
         //set Home Seleceted
@@ -42,26 +39,5 @@ public class MainActivity extends AppCompatActivity {
                 return false;
             }
         });
-
-        fruits = (CardView) findViewById(R.id.fruit);
-        fruits.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent intent = new Intent(getApplicationContext(), FruitActivity.class);
-                startActivity(intent);
-                //finish();
-            }
-        });
-
     }
-
-//    @Override
-//    int getContentViewId() {
-//        return R.layout.activity_main;
-//    }
-//
-//    @Override
-//    int getNavigationMenuItemId() {
-//        return R.id.nav_diet;
-//    }
 }
