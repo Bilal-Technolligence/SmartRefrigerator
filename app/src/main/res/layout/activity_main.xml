@@ -103,7 +103,7 @@
                 android:background="@color/colorWhite">
 
                 <androidx.cardview.widget.CardView
-                    android:id="@+id/vegetables"
+                    android:id="@+id/vegetable"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
                     android:layout_marginLeft="12dp"
@@ -140,7 +140,7 @@
                 android:background="@color/colorWhite">
 
                 <androidx.cardview.widget.CardView
-                    android:id="@+id/eggs"
+                    android:id="@+id/egg"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
                     android:layout_marginLeft="12dp"

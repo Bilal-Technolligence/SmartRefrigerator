@@ -12,7 +12,7 @@ import android.view.View;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 
 public class MainActivity extends AppCompatActivity {
-    CardView fruits;
+    CardView fruits,vegetables,eggs;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -44,10 +44,33 @@ public class MainActivity extends AppCompatActivity {
         });
 
         fruits = (CardView) findViewById(R.id.fruit);
+        vegetables = (CardView) findViewById(R.id.vegetable);
+
+        eggs = (CardView) findViewById(R.id.egg);
+
+
         fruits.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 Intent intent = new Intent(getApplicationContext(), FruitActivity.class);
+                startActivity(intent);
+                //finish();
+            }
+        });
+
+        vegetables.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(getApplicationContext(), VegetableActivity.class);
+                startActivity(intent);
+                //finish();
+            }
+        });
+
+        eggs.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(getApplicationContext(), EggsActivity.class);
                 startActivity(intent);
                 //finish();
             }
