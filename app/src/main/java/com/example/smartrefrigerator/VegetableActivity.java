@@ -8,14 +8,17 @@ import android.os.Bundle;
 import android.view.MenuItem;
 
 import com.google.android.material.bottomnavigation.BottomNavigationView;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
 
 public class VegetableActivity extends AppCompatActivity {
+    DatabaseReference dref= FirebaseDatabase.getInstance().getReference();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_vegetable);
-
+        dref.child("Fruit").child("amount").setValue(1000).toString();
         BottomNavigationView bottomNavigationView = findViewById(R.id.navigationView);
         //set Home Seleceted
         bottomNavigationView.setSelectedItemId(R.id.nav_home);

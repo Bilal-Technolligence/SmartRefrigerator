@@ -61,7 +61,7 @@
                             android:id="@+id/txtTotal"
                             android:layout_width="match_parent"
                             android:layout_height="match_parent"
-                            android:hint="8 Kg"
+                            android:hint="1000 g"
                             android:textSize="20dp"
                             android:textColorHint="@color/black"
                             android:textColor="@color/black"
@@ -207,7 +207,7 @@
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:layout_gravity="center"
-                            android:text="Days"
+                            android:text="Hour"
                             android:textColor="@android:color/black"
                             android:textSize="20dp"
                             android:textStyle="normal" />
@@ -234,7 +234,7 @@
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:layout_gravity="center"
-                            android:text="Hour"
+                            android:text="Minute"
                             android:textColor="@android:color/black"
                             android:textSize="20dp"
                             android:textStyle="normal" />
@@ -261,7 +261,7 @@
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:layout_gravity="center"
-                            android:text="Minute"
+                            android:text="Second"
                             android:textColor="@android:color/black"
                             android:textSize="20dp"
                             android:textStyle="normal" />

@@ -8,16 +8,53 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.TextView;
 
 import com.google.android.material.bottomnavigation.BottomNavigationView;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.ValueEventListener;
+
+import static java.lang.Integer.parseInt;
 
 public class MainActivity extends AppCompatActivity {
     CardView fruits,vegetables,eggs;
+    TextView fruitExipry;
+    DatabaseReference dref= FirebaseDatabase.getInstance().getReference();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
          setContentView(R.layout.activity_main);
+        fruitExipry =(TextView)findViewById(R.id.txtfoodExipry);
+
+         //DataBase
+        dref.addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                if(dataSnapshot.exists()){
+                 String  status=dataSnapshot.child("ExpiryNotify/Fruit/tittle").getValue().toString();
+
+                   // String  detail=dataSnapshot.child("ExpiryNotify/Fruit/tittle").child("amount").getValue().toString();
+                    fruitExipry.setText(status);
+
+                }
+                else {
+                    fruitExipry.setText("No Food Expired");
+                }
+
+
+            }
+
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError databaseError) {
+
+            }
+        });
+
 
         BottomNavigationView bottomNavigationView = findViewById(R.id.navigationView);
         //set Home Seleceted
