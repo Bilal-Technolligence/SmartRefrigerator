@@ -6,6 +6,9 @@
     android:layout_height="match_parent"
     android:background="@color/colorWhite"
     tools:context=".DietActivity">
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
@@ -22,16 +25,28 @@
             android:id="@+id/txtDay"/>
         <RelativeLayout
             android:layout_width="match_parent"
-            android:layout_height="200dp"
-            android:layout_marginTop="10dp">
-            <ImageView
+            android:layout_height="230dp"
+            android:layout_marginTop="10dp"
+            android:layout_marginLeft="5dp"
+            android:layout_marginRight="5dp"
+            android:background="@drawable/backgroundlayout">
+
+            <TextView
                 android:layout_width="match_parent"
-                android:layout_height="200dp"
-                android:src="@color/black"/>
+                android:layout_height="wrap_content"
+                android:text="Breakfast"
+                android:background="@color/white"
+                android:textColor="#ff0000"
+                android:layout_marginLeft="6dp"
+                android:layout_marginTop="6dp"
+                android:layout_marginRight="6dp"
+                android:textSize="25dp"/>
             <LinearLayout
                 android:layout_width="wrap_content"
-                android:layout_height="190dp"
-                android:layout_margin="5dp"
+                android:layout_height="186dp"
+                android:layout_marginTop="35dp"
+                android:layout_marginLeft="6dp"
+                android:layout_marginRight="6dp"
                 android:background="@color/white"
                 android:orientation="horizontal"
                 android:weightSum="2">
@@ -81,16 +96,25 @@
         </RelativeLayout>
         <RelativeLayout
             android:layout_width="match_parent"
-            android:layout_height="200dp"
-            android:layout_marginTop="10dp">
-            <ImageView
+            android:layout_height="230dp"
+            android:layout_marginTop="10dp"
+            android:background="@drawable/backgroundlayout">
+            <TextView
                 android:layout_width="match_parent"
-                android:layout_height="200dp"
-                android:src="@color/black"/>
+                android:layout_height="wrap_content"
+                android:text="Lunch"
+                android:background="@color/white"
+                android:textColor="#ff0000"
+                android:layout_marginLeft="6dp"
+                android:layout_marginTop="6dp"
+                android:layout_marginRight="6dp"
+                android:textSize="25dp"/>
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="190dp"
-                android:layout_margin="5dp"
+                android:layout_marginTop="35dp"
+                android:layout_marginLeft="6dp"
+                android:layout_marginRight="6dp"
                 android:background="@color/white"
                 android:orientation="vertical"
                 android:gravity="center">
@@ -111,19 +135,29 @@
         </RelativeLayout>
         <RelativeLayout
             android:layout_width="match_parent"
-            android:layout_height="200dp"
-            android:layout_marginTop="10dp">
-            <ImageView
+            android:layout_height="230dp"
+            android:layout_marginTop="10dp"
+            android:background="@drawable/backgroundlayout">
+            <TextView
                 android:layout_width="match_parent"
-                android:layout_height="200dp"
-                android:src="@color/black"/>
+                android:layout_height="wrap_content"
+                android:text="Dinner"
+                android:background="@color/white"
+                android:textColor="#ff0000"
+                android:layout_marginLeft="6dp"
+                android:layout_marginTop="6dp"
+                android:layout_marginRight="6dp"
+                android:textSize="25dp"/>
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="190dp"
-                android:layout_margin="5dp"
+                android:layout_marginTop="35dp"
+                android:layout_marginLeft="6dp"
+                android:layout_marginRight="6dp"
                 android:background="@color/white"
                 android:orientation="vertical"
                 android:gravity="center">
+
                 <ImageView
                     android:layout_width="250dp"
                     android:layout_height="155dp"
@@ -140,4 +174,5 @@
             </LinearLayout>
         </RelativeLayout>
     </LinearLayout>
+    </ScrollView>
 </androidx.constraintlayout.widget.ConstraintLayout>
