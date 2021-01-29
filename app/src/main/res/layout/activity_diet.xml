@@ -17,7 +17,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:textSize="30dp"
-            android:text="Day"
+            android:text="Monday"
             android:textStyle="bold"
             android:layout_marginTop="10dp"
             android:textColor="@color/black"
@@ -60,12 +60,12 @@
                     <ImageView
                         android:layout_width="250dp"
                         android:layout_height="155dp"
-                        android:src="@drawable/paratha"
+                        android:src="@drawable/tea"
                         android:id="@+id/imgDishB1"/>
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="Paratha"
+                        android:text="Tea"
                         android:textColor="@color/black"
                         android:textSize="20dp"
                         android:id="@+id/txtDishB1"
@@ -121,12 +121,12 @@
                 <ImageView
                     android:layout_width="250dp"
                     android:layout_height="155dp"
-                    android:src="@drawable/paratha"
+                    android:src="@drawable/burger"
                     android:id="@+id/imgDishLunch"/>
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="Paratha"
+                    android:text="Burger"
                     android:textColor="@color/black"
                     android:textSize="20dp"
                     android:id="@+id/txtDishLunch"
@@ -161,12 +161,12 @@
                 <ImageView
                     android:layout_width="250dp"
                     android:layout_height="155dp"
-                    android:src="@drawable/paratha"
+                    android:src="@drawable/DaalMash"
                     android:id="@+id/imgDishDinner"/>
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="Paratha"
+                    android:text="Dal Mash"
                     android:textColor="@color/black"
                     android:textSize="20dp"
                     android:id="@+id/txtDishDinner"
