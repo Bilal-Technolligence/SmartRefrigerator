@@ -26,12 +26,58 @@
             android:layout_marginTop="10dp">
             <ImageView
                 android:layout_width="match_parent"
-                android:layout_height="200dp"/>
-            <androidx.recyclerview.widget.RecyclerView
-                android:layout_width="match_parent"
-                android:layout_height="180dp"
-                android:layout_margin="10dp"
-                android:id="@+id/recyclerBreakfast"/>
+                android:layout_height="200dp"
+                android:src="@color/black"/>
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="190dp"
+                android:layout_margin="5dp"
+                android:background="@color/white"
+                android:orientation="horizontal"
+                android:weightSum="2">
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="180dp"
+                    android:background="@color/white"
+                    android:orientation="vertical"
+                    android:gravity="center"
+                    android:layout_weight="1">
+                    <ImageView
+                        android:layout_width="250dp"
+                        android:layout_height="155dp"
+                        android:src="@drawable/paratha"
+                        android:id="@+id/imgDishB1"/>
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Paratha"
+                        android:textColor="@color/black"
+                        android:textSize="20dp"
+                        android:id="@+id/txtDishB1"
+                        />
+                </LinearLayout>
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="180dp"
+                    android:background="@color/white"
+                    android:orientation="vertical"
+                    android:gravity="center"
+                    android:layout_weight="1">
+                    <ImageView
+                        android:layout_width="250dp"
+                        android:layout_height="155dp"
+                        android:src="@drawable/paratha"
+                        android:id="@+id/imgDishB2"/>
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Paratha"
+                        android:textColor="@color/black"
+                        android:textSize="20dp"
+                        android:id="@+id/txtDishB2"
+                        />
+                </LinearLayout>
+            </LinearLayout>
         </RelativeLayout>
         <RelativeLayout
             android:layout_width="match_parent"
@@ -39,12 +85,29 @@
             android:layout_marginTop="10dp">
             <ImageView
                 android:layout_width="match_parent"
-                android:layout_height="200dp"/>
-            <androidx.recyclerview.widget.RecyclerView
+                android:layout_height="200dp"
+                android:src="@color/black"/>
+            <LinearLayout
                 android:layout_width="match_parent"
-                android:layout_height="180dp"
-                android:layout_margin="10dp"
-                android:id="@+id/recyclerLunch"/>
+                android:layout_height="190dp"
+                android:layout_margin="5dp"
+                android:background="@color/white"
+                android:orientation="vertical"
+                android:gravity="center">
+                <ImageView
+                    android:layout_width="250dp"
+                    android:layout_height="155dp"
+                    android:src="@drawable/paratha"
+                    android:id="@+id/imgDishLunch"/>
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Paratha"
+                    android:textColor="@color/black"
+                    android:textSize="20dp"
+                    android:id="@+id/txtDishLunch"
+                    />
+            </LinearLayout>
         </RelativeLayout>
         <RelativeLayout
             android:layout_width="match_parent"
@@ -52,12 +115,29 @@
             android:layout_marginTop="10dp">
             <ImageView
                 android:layout_width="match_parent"
-                android:layout_height="200dp"/>
-            <androidx.recyclerview.widget.RecyclerView
+                android:layout_height="200dp"
+                android:src="@color/black"/>
+            <LinearLayout
                 android:layout_width="match_parent"
-                android:layout_height="180dp"
-                android:layout_margin="10dp"
-                android:id="@+id/recyclerDinner"/>
+                android:layout_height="190dp"
+                android:layout_margin="5dp"
+                android:background="@color/white"
+                android:orientation="vertical"
+                android:gravity="center">
+                <ImageView
+                    android:layout_width="250dp"
+                    android:layout_height="155dp"
+                    android:src="@drawable/paratha"
+                    android:id="@+id/imgDishDinner"/>
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Paratha"
+                    android:textColor="@color/black"
+                    android:textSize="20dp"
+                    android:id="@+id/txtDishDinner"
+                    />
+            </LinearLayout>
         </RelativeLayout>
     </LinearLayout>
 </androidx.constraintlayout.widget.ConstraintLayout>
