@@ -4,73 +4,175 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/colorPrimary"
+    android:background="@color/colorWhite"
     tools:context=".DietActivity">
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
     <LinearLayout
         android:layout_width="match_parent"
-        android:orientation="vertical"
-        android:layout_marginBottom="65dp"
-        android:background="@color/colorPrimary"
-
-        android:layout_height="match_parent">
-        <EditText
-            android:id="@+id/new_note_title"
-            android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical">
+        <TextView
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:textSize="30dp"
+            android:text="Monday"
+            android:textStyle="bold"
+            android:layout_marginTop="10dp"
             android:textColor="@color/black"
-            android:background="@android:color/transparent"
-            android:hint="Type your title here..."
-            android:padding="10dp" />
-
-        <View
-            android:layout_width="match_parent"
-            android:layout_height="1dp"
-            android:layout_marginEnd="10dp"
             android:layout_marginLeft="10dp"
-            android:layout_marginRight="10dp"
-            android:layout_marginStart="10dp"
-            android:alpha=".3"
-            android:background="@android:color/black" />
-
-        <EditText
-            android:id="@+id/new_note_content"
+            android:id="@+id/txtDay"/>
+        <RelativeLayout
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:background="@android:color/transparent"
-            android:ems="10"
-            android:gravity="top"
-            android:textColor="@color/black"
-            android:hint="Type your description here...
+            android:layout_height="230dp"
+            android:layout_marginTop="10dp"
+            android:layout_marginLeft="5dp"
+            android:layout_marginRight="5dp"
+            android:background="@drawable/backgroundlayout">
 
-
-
-
-                        Under Development"
-            android:inputType="textMultiLine"
-            android:padding="10dp" />
-
-        <Button
-            android:id="@+id/new_note_btn"
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Breakfast"
+                android:background="@color/white"
+                android:textColor="#ff0000"
+                android:layout_marginLeft="6dp"
+                android:layout_marginTop="6dp"
+                android:layout_marginRight="6dp"
+                android:textSize="25dp"/>
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="186dp"
+                android:layout_marginTop="35dp"
+                android:layout_marginLeft="6dp"
+                android:layout_marginRight="6dp"
+                android:background="@color/white"
+                android:orientation="horizontal"
+                android:weightSum="2">
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="180dp"
+                    android:background="@color/white"
+                    android:orientation="vertical"
+                    android:gravity="center"
+                    android:layout_weight="1">
+                    <ImageView
+                        android:layout_width="250dp"
+                        android:layout_height="155dp"
+                        android:src="@drawable/tea"
+                        android:id="@+id/imgDishB1"/>
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Tea"
+                        android:textColor="@color/black"
+                        android:textSize="20dp"
+                        android:id="@+id/txtDishB1"
+                        />
+                </LinearLayout>
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="180dp"
+                    android:background="@color/white"
+                    android:orientation="vertical"
+                    android:gravity="center"
+                    android:layout_weight="1">
+                    <ImageView
+                        android:layout_width="250dp"
+                        android:layout_height="155dp"
+                        android:src="@drawable/paratha"
+                        android:id="@+id/imgDishB2"/>
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Paratha"
+                        android:textColor="@color/black"
+                        android:textSize="20dp"
+                        android:id="@+id/txtDishB2"
+                        />
+                </LinearLayout>
+            </LinearLayout>
+        </RelativeLayout>
+        <RelativeLayout
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:background="@color/colorPrimaryDark"
-            android:text="Add Diet Plan"
-            android:textColor="@android:color/white" />
+            android:layout_height="230dp"
+            android:layout_marginTop="10dp"
+            android:background="@drawable/backgroundlayout">
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Lunch"
+                android:background="@color/white"
+                android:textColor="#ff0000"
+                android:layout_marginLeft="6dp"
+                android:layout_marginTop="6dp"
+                android:layout_marginRight="6dp"
+                android:textSize="25dp"/>
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="190dp"
+                android:layout_marginTop="35dp"
+                android:layout_marginLeft="6dp"
+                android:layout_marginRight="6dp"
+                android:background="@color/white"
+                android:orientation="vertical"
+                android:gravity="center">
+                <ImageView
+                    android:layout_width="250dp"
+                    android:layout_height="155dp"
+                    android:src="@drawable/burger"
+                    android:id="@+id/imgDishLunch"/>
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Burger"
+                    android:textColor="@color/black"
+                    android:textSize="20dp"
+                    android:id="@+id/txtDishLunch"
+                    />
+            </LinearLayout>
+        </RelativeLayout>
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="230dp"
+            android:layout_marginTop="10dp"
+            android:background="@drawable/backgroundlayout">
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Dinner"
+                android:background="@color/white"
+                android:textColor="#ff0000"
+                android:layout_marginLeft="6dp"
+                android:layout_marginTop="6dp"
+                android:layout_marginRight="6dp"
+                android:textSize="25dp"/>
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="190dp"
+                android:layout_marginTop="35dp"
+                android:layout_marginLeft="6dp"
+                android:layout_marginRight="6dp"
+                android:background="@color/white"
+                android:orientation="vertical"
+                android:gravity="center">
 
+                <ImageView
+                    android:layout_width="250dp"
+                    android:layout_height="155dp"
+                    android:src="@drawable/DaalMash"
+                    android:id="@+id/imgDishDinner"/>
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Dal Mash"
+                    android:textColor="@color/black"
+                    android:textSize="20dp"
+                    android:id="@+id/txtDishDinner"
+                    />
+            </LinearLayout>
+        </RelativeLayout>
     </LinearLayout>
-    <com.google.android.material.bottomnavigation.BottomNavigationView
-        android:id="@+id/navigationView"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_gravity="bottom"
-        android:layout_marginStart="0dp"
-        android:layout_marginEnd="0dp"
-        android:background="@color/colorWhite"
-        app:itemIconTint="@drawable/selectorcolor"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintRight_toRightOf="parent"
-        android:layout_alignParentBottom="true"
-        app:menu="@menu/navigation"/>
+    </ScrollView>
 </androidx.constraintlayout.widget.ConstraintLayout>
