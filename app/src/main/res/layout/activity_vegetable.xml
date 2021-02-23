@@ -16,6 +16,11 @@
             android:layout_height="match_parent"
             android:gravity="center_horizontal"
             android:orientation="vertical">
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="100dp"
+                android:text="value"
+                android:id="@+id/txttesting"/>
             <ImageView
                 android:id="@+id/imagelogo"
                 android:layout_width="match_parent"

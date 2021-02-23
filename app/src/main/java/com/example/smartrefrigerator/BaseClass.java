@@ -10,36 +10,42 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 
-public abstract class BaseClass extends AppCompatActivity implements BottomNavigationView.OnNavigationItemSelectedListener{
+public abstract class BaseClass extends AppCompatActivity implements BottomNavigationView.OnNavigationItemSelectedListener {
     protected BottomNavigationView navigationView;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(getContentViewId());
 
-
         navigationView = (BottomNavigationView) findViewById(R.id.navigationView);
         navigationView.setOnNavigationItemSelectedListener(this);
-
-
     }
-
+    @Override
+    protected void onStart() {
+        super.onStart();
+        updateNavigationBarState();
+    }
+    @Override
+    public void onPause() {
+        super.onPause();
+        overridePendingTransition(0, 0);
+    }
     @Override
     public boolean onNavigationItemSelected(@NonNull MenuItem item) {
         int itemId = item.getItemId();
         if (itemId == R.id.nav_home) {
             startActivity(new Intent(this, MainActivity.class));
-        }
-        else if (itemId == R.id.nav_setting) {
-            Intent intent = new Intent(this , SettingsActivity.class);
-            startActivity(intent);
+        } else if (itemId == R.id.nav_notification) {
+            startActivity(new Intent(this, NotificationActivity.class));
         } else if (itemId == R.id.nav_diet) {
-            Intent intent = new Intent(this , DietActivity.class);
-            startActivity(intent);
+            startActivity(new Intent(this, DietActivity.class));
+
+        } else if (itemId == R.id.nav_setting) {
+            startActivity(new Intent(this, SettingsActivity.class));
         }
+
         return true;
     }
-
     private void updateNavigationBarState(){
         int actionId = getNavigationMenuItemId();
         selectBottomNavigationBarItem(actionId);
@@ -56,6 +62,7 @@ public abstract class BaseClass extends AppCompatActivity implements BottomNavig
             }
         }
     }
+
     abstract int getContentViewId();
 
     abstract int getNavigationMenuItemId();

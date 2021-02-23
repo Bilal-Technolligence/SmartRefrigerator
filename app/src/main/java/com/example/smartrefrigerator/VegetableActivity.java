@@ -3,16 +3,21 @@ package com.example.smartrefrigerator;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.app.NotificationCompat;
+import androidx.preference.PreferenceManager;
 
+import android.app.AlarmManager;
 import android.app.Notification;
 import android.app.NotificationManager;
 import android.app.PendingIntent;
 import android.app.TaskStackBuilder;
+import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.media.RingtoneManager;
 import android.net.Uri;
 import android.os.Bundle;
 import android.os.CountDownTimer;
+import android.os.SystemClock;
 import android.view.MenuItem;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -31,28 +36,41 @@ import java.util.Date;
 
 import static java.lang.Integer.parseInt;
 
-public class VegetableActivity extends AppCompatActivity {
+public class VegetableActivity extends BaseClass {
     DatabaseReference dref= FirebaseDatabase.getInstance().getReference();
     TextView txtRemaining, txtUsed ,txtThreshold, thresholdValue,txtDays,txtMinutes,txtHours;
     String status;
     int used;
     int thresholdComparison;
     double thresholddata;
+    SharedPreferences myPrefs;
+    SharedServices sharedPref;
+
     NotificationCompat.Builder notification;
-    private static final int uniqueID = 45612;
+   // private static final int uniqueID = 45612;
+    /////Only for Notification////
+    public static final String NOTIFICATION_CHANNEL_ID = "10001" ;
+    private final static String default_notification_channel_id = "default" ;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_vegetable);
+       // setContentView(R.layout.activity_vegetable);
+        txtThreshold =(TextView)findViewById(R.id.txttesting);
+        sharedPref = new SharedServices(VegetableActivity.this);
+        myPrefs = getApplicationContext().getSharedPreferences("MyPref", MODE_PRIVATE);
+       // myPrefs = getApplicationContext().getSharedPreferences("MyPref", MODE_PRIVATE);
+       // loadedProgress1 = sharedPref.getInt("Key_PROGRESS_1");
 
-        //
+//            String a = String.valueOf(sharedPref.getInt("Key_Eggs"));
+      //      txtThreshold.setText(a);
+
         txtRemaining=(TextView) findViewById(R.id.txtremaining);
         txtUsed=(TextView) findViewById(R.id.txtused);
         txtDays = (TextView) findViewById(R.id.tv_days);
         txtHours = (TextView) findViewById(R.id.tv_hour);
         txtMinutes = (TextView) findViewById(R.id.tv_minute);
-        //
+        sharedPref = new SharedServices(VegetableActivity.this);
         //Timer CountDown
         new CountDownTimer(40000, 1000) {
             public void onTick(long millisUntilFinished) {
@@ -92,9 +110,11 @@ public class VegetableActivity extends AppCompatActivity {
                 txtRemaining.setText(status  + " g");
                 thresholdComparison=parseInt(status);
                 // String value=thresholdValue.getText().toString();
+                //First time when App Installed\\\
 
                 // thresholddata= parseInt(value);
-                thresholddata = 550;
+              //  thresholddata  = sharedPref.getInt("Key_Vegetables");
+                //thresholddata = 550;
 
                 //Compare threshold value and generate alert
 
@@ -103,7 +123,8 @@ public class VegetableActivity extends AppCompatActivity {
                 //  AddData();
 
                 if(thresholddata>thresholdComparison){
-                    onReceive();
+                  //  onReceive();
+                    scheduleNotification(getNotification( "Smart Refrigerator Alert" ) , 5000 ) ;
                     saveNotificationfirebase();
                     //   Toast.makeText(IngredientDetailActivity.this, "Refill Box", Toast.LENGTH_SHORT).show();
 
@@ -120,69 +141,53 @@ public class VegetableActivity extends AppCompatActivity {
         });
         //
 
-        BottomNavigationView bottomNavigationView = findViewById(R.id.navigationView);
-        //set Home Seleceted
-        bottomNavigationView.setSelectedItemId(R.id.nav_home);
-        bottomNavigationView.setOnNavigationItemSelectedListener(new BottomNavigationView.OnNavigationItemSelectedListener() {
-            @Override
-            public boolean onNavigationItemSelected(@NonNull MenuItem item) {
-                switch (item.getItemId()) {
-                    case R.id.nav_diet:
-                        startActivity(new Intent(getApplicationContext(), DietActivity.class));
-                        overridePendingTransition(0,0);
-                        return true;
-                    case R.id.nav_setting:
-                        startActivity(new Intent(getApplicationContext(), SettingsActivity.class));
-                        overridePendingTransition(0,0);
-                        return true;
-                    case R.id.nav_notification:
-                        startActivity(new Intent(getApplicationContext(), NotificationActivity.class));
-                        overridePendingTransition(0,0);
-                        return true;
-                }
-                return false;
-            }
-        });
+    }
+
+    @Override
+    int getContentViewId() {
+        return R.layout.activity_vegetable;
+    }
+
+    @Override
+    int getNavigationMenuItemId() {
+        return R.id.nav_home;
     }
 
     //To Genrate a notification on threshold value
 
-    public void onReceive(){
-
-
-        Intent notificationIintent = new Intent(VegetableActivity.this, NotificationActivity.class);
-        TaskStackBuilder taskStackBuilder= TaskStackBuilder.create(VegetableActivity.this);
-        taskStackBuilder.addNextIntent(notificationIintent);
-        PendingIntent pendingIntent = taskStackBuilder.getPendingIntent(100, PendingIntent.FLAG_UPDATE_CURRENT);
-        NotificationCompat.Builder builder = new NotificationCompat.Builder(VegetableActivity.this);
-        Uri alarmSound = RingtoneManager.getDefaultUri( RingtoneManager.TYPE_NOTIFICATION);
-        builder.setSound(alarmSound);
-
-        Notification notification =builder.setContentTitle("Threshold alert")
-                .setAutoCancel(true)
-                .setBadgeIconType(NotificationCompat.BADGE_ICON_SMALL)
-                .setTicker("Salt")
-                .setContentTitle("Amount Below 500g")
-                .setContentText("Please Refill Vegetable Box")
-                .setAutoCancel(true)
-                // .setNumber(messageCount)
-                .setBadgeIconType(NotificationCompat.BADGE_ICON_SMALL)
-                .setSmallIcon(R.drawable.ic_notifications_black_24dp)
-
-                .setContentIntent(pendingIntent).build();
-
-        NotificationManager notificationManager = (NotificationManager) getSystemService(NOTIFICATION_SERVICE);
-        notificationManager.notify(uniqueID, notification);
+    private void scheduleNotification(Notification notification , int delay) {
+        Intent notificationIntent = new Intent( this, MyNotificationPublisher.class ) ;
+        // Intent notificationIintent = new Intent(this, NotificationActivity.class);
+        notificationIntent.putExtra(MyNotificationPublisher. NOTIFICATION_ID , 1 ) ;
+        notificationIntent.putExtra(MyNotificationPublisher. NOTIFICATION , notification) ;
+        PendingIntent pendingIntent = PendingIntent. getBroadcast ( this, 0 , notificationIntent , PendingIntent. FLAG_UPDATE_CURRENT ) ;
+        long futureInMillis = SystemClock. elapsedRealtime () + delay ;
+        AlarmManager alarmManager = (AlarmManager) getSystemService(Context. ALARM_SERVICE ) ;
+        assert alarmManager != null;
+        alarmManager.set(AlarmManager. ELAPSED_REALTIME_WAKEUP , futureInMillis , pendingIntent) ;
     }
-
+    private Notification getNotification (String content) {
+        NotificationCompat.Builder builder = new NotificationCompat.Builder( this, default_notification_channel_id ) ;
+        builder.setContentTitle( "Threshold alert" ) ;
+        Intent intent = new Intent(this, NotificationActivity.class);
+        PendingIntent pendingIntent = PendingIntent.getActivity(this, 0, intent, 0);
+        builder.setContentIntent(pendingIntent);
+       builder.setTicker("Vegetables");
+       builder.setContentTitle("Amount Below 500g");
+       builder.setContentText("Please Refill Vegetable Box");
+        builder.setSmallIcon(R.drawable. ic_launcher_foreground ) ;
+        builder.setAutoCancel( true ) ;
+        builder.setChannelId( NOTIFICATION_CHANNEL_ID ) ;
+        return builder.build() ;
+    }
     //Save notification on firebase
 
     public void saveNotificationfirebase(){
 
-        dref.child("Notifications/Fruit/tittle").setValue( "Please Refill Box" );
-        dref.child("Notifications/Fruit/description").setValue( "Fruit amount below 500g" );
+        dref.child("Notifications/Vegetables/tittle").setValue( "Please Refill Vegetables Box" );
+        dref.child("Notifications/Vegetables/description").setValue( "Vegetables amount below 500g" );
         String currentDateTimeString = DateFormat.getDateTimeInstance().format(new Date());
-        dref.child("Notifications/Fruit/datetime").setValue(currentDateTimeString);
+        dref.child("Notifications/Vegetables/datetime").setValue(currentDateTimeString);
 
 
     }

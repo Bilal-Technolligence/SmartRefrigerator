@@ -161,7 +161,7 @@
                 <ImageView
                     android:layout_width="250dp"
                     android:layout_height="155dp"
-                    android:src="@drawable/DaalMash"
+                    android:src="@drawable/dalmash"
                     android:id="@+id/imgDishDinner"/>
                 <TextView
                     android:layout_width="wrap_content"

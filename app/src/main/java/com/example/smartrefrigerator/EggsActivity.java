@@ -31,7 +31,7 @@ import java.util.Date;
 
 import static java.lang.Integer.parseInt;
 
-public class EggsActivity extends AppCompatActivity {
+public class EggsActivity extends BaseClass {
     DatabaseReference dref= FirebaseDatabase.getInstance().getReference();
     TextView txtRemaining, txtUsed ,txtThreshold, thresholdValue,txtDays,txtMinutes,txtHours;
     String status;
@@ -44,7 +44,7 @@ public class EggsActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_eggs);
+      //  setContentView(R.layout.activity_eggs);
 
         //
         txtRemaining=(TextView) findViewById(R.id.txtremaining);
@@ -120,29 +120,17 @@ public class EggsActivity extends AppCompatActivity {
         });
         //
 
-        BottomNavigationView bottomNavigationView = findViewById(R.id.navigationView);
-        //set Home Seleceted
-        bottomNavigationView.setSelectedItemId(R.id.nav_home);
-        bottomNavigationView.setOnNavigationItemSelectedListener(new BottomNavigationView.OnNavigationItemSelectedListener() {
-            @Override
-            public boolean onNavigationItemSelected(@NonNull MenuItem item) {
-                switch (item.getItemId()) {
-                    case R.id.nav_diet:
-                        startActivity(new Intent(getApplicationContext(), DietActivity.class));
-                        overridePendingTransition(0,0);
-                        return true;
-                    case R.id.nav_setting:
-                        startActivity(new Intent(getApplicationContext(), SettingsActivity.class));
-                        overridePendingTransition(0,0);
-                        return true;
-                    case R.id.nav_notification:
-                        startActivity(new Intent(getApplicationContext(), NotificationActivity.class));
-                        overridePendingTransition(0,0);
-                        return true;
-                }
-                return false;
-            }
-        });
+
+    }
+
+    @Override
+    int getContentViewId() {
+        return R.layout.activity_eggs;
+    }
+
+    @Override
+    int getNavigationMenuItemId() {
+        return R.id.nav_home;
     }
 
     //To Genrate a notification on threshold value
