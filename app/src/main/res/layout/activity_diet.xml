@@ -13,166 +13,382 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:orientation="vertical">
-        <TextView
+        <TableLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+            <TableRow
+                android:layout_width="match_parent"
+                android:layout_weight="1"
+                android:background="@color/colorPrimary"
+                android:weightSum="4">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="60dp"
+                    android:text=" "
+                    android:textSize="15dp"
+                    android:gravity="center"
+                    android:layout_weight="1"/>
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="60dp"
+                    android:text="Breakfast"
+                    android:textColor="@color/white"
+                    android:gravity="center"
+                    android:textSize="15dp"
+                    android:layout_weight="1"/>
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="60dp"
+                    android:text="Lunch"
+                    android:textColor="@color/white"
+                    android:gravity="center"
+                    android:layout_weight="1"
+                    android:textSize="15dp" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="60dp"
+                    android:text="Dinner"
+                    android:textColor="@color/white"
+                    android:gravity="center"
+                    android:layout_weight="1"
+                    android:textSize="15dp" />
+
+            </TableRow>
+            <TableRow
+                android:layout_width="match_parent"
+                android:layout_weight="1"
+                android:weightSum="4">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="60dp"
+                    android:text="Day 1"
+                    android:background="@color/colorPrimary"
+                    android:textSize="15dp"
+                    android:gravity="center"
+                    android:textColor="@color/white"
+                    android:layout_weight="1"/>
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="60dp"
+                    android:text=""
+                    android:id="@+id/day1B"
+                    android:textColor="@color/black"
+                    android:gravity="center"
+                    android:textSize="10dp"
+                    android:layout_weight="1"/>
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="60dp"
+                    android:text=""
+                    android:id="@+id/day1L"
+                    android:textColor="@color/black"
+                    android:gravity="center"
+                    android:textSize="10dp"
+                    android:layout_weight="1"/>
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="60dp"
+                    android:text=""
+                    android:id="@+id/day1D"
+                    android:textColor="@color/black"
+                    android:gravity="center"
+                    android:textSize="10dp"
+                    android:layout_weight="1"/>
+
+            </TableRow>
+            <TableRow
+                android:layout_width="match_parent"
+                android:layout_weight="1"
+                android:weightSum="4">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="60dp"
+                    android:text="Day 2"
+                    android:background="@color/colorPrimary"
+                    android:textSize="15dp"
+                    android:gravity="center"
+                    android:textColor="@color/white"
+                    android:layout_weight="1"/>
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="60dp"
+                    android:text=""
+                    android:id="@+id/day2B"
+                    android:textColor="@color/black"
+                    android:gravity="center"
+                    android:textSize="10dp"
+                    android:layout_weight="1"/>
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="60dp"
+                    android:text=""
+                    android:id="@+id/day2L"
+                    android:textColor="@color/black"
+                    android:gravity="center"
+                    android:textSize="10dp"
+                    android:layout_weight="1"/>
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="60dp"
+                    android:text=""
+                    android:id="@+id/day2D"
+                    android:textColor="@color/black"
+                    android:gravity="center"
+                    android:textSize="10dp"
+                    android:layout_weight="1"/>
+
+            </TableRow>
+            <TableRow
+                android:layout_width="match_parent"
+                android:layout_weight="1"
+                android:weightSum="4">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="60dp"
+                    android:text="Day 3"
+                    android:background="@color/colorPrimary"
+                    android:textSize="15dp"
+                    android:gravity="center"
+                    android:textColor="@color/white"
+                    android:layout_weight="1"/>
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="60dp"
+                    android:text=""
+                    android:id="@+id/day3B"
+                    android:textColor="@color/black"
+                    android:gravity="center"
+                    android:textSize="10dp"
+                    android:layout_weight="1"/>
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="60dp"
+                    android:text=""
+                    android:id="@+id/day3L"
+                    android:textColor="@color/black"
+                    android:gravity="center"
+                    android:textSize="10dp"
+                    android:layout_weight="1"/>
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="60dp"
+                    android:text=""
+                    android:id="@+id/day3D"
+                    android:textColor="@color/black"
+                    android:gravity="center"
+                    android:textSize="10dp"
+                    android:layout_weight="1"/>
+
+            </TableRow>
+            <TableRow
+                android:layout_width="match_parent"
+                android:layout_weight="1"
+                android:weightSum="4">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="60dp"
+                    android:text="Day 4"
+                    android:background="@color/colorPrimary"
+                    android:textSize="15dp"
+                    android:gravity="center"
+                    android:textColor="@color/white"
+                    android:layout_weight="1"/>
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="60dp"
+                    android:text=""
+                    android:id="@+id/day4B"
+                    android:textColor="@color/black"
+                    android:gravity="center"
+                    android:textSize="10dp"
+                    android:layout_weight="1"/>
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="60dp"
+                    android:text=""
+                    android:id="@+id/day4L"
+                    android:textColor="@color/black"
+                    android:gravity="center"
+                    android:textSize="10dp"
+                    android:layout_weight="1"/>
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="60dp"
+                    android:text=""
+                    android:id="@+id/day4D"
+                    android:textColor="@color/black"
+                    android:gravity="center"
+                    android:textSize="10dp"
+                    android:layout_weight="1"/>
+
+            </TableRow>
+            <TableRow
+                android:layout_width="match_parent"
+                android:layout_weight="1"
+                android:weightSum="4">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="60dp"
+                    android:text="Day 5"
+                    android:background="@color/colorPrimary"
+                    android:textSize="15dp"
+                    android:gravity="center"
+                    android:textColor="@color/white"
+                    android:layout_weight="1"/>
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="60dp"
+                    android:text=""
+                    android:id="@+id/day5B"
+                    android:textColor="@color/black"
+                    android:gravity="center"
+                    android:textSize="10dp"
+                    android:layout_weight="1"/>
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="60dp"
+                    android:text=""
+                    android:id="@+id/day5L"
+                    android:textColor="@color/black"
+                    android:gravity="center"
+                    android:textSize="10dp"
+                    android:layout_weight="1"/>
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="60dp"
+                    android:text=""
+                    android:id="@+id/day5D"
+                    android:textColor="@color/black"
+                    android:gravity="center"
+                    android:textSize="10dp"
+                    android:layout_weight="1"/>
+
+            </TableRow>
+            <TableRow
+                android:layout_width="match_parent"
+                android:layout_weight="1"
+                android:weightSum="4">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="60dp"
+                    android:text="Day 6"
+                    android:background="@color/colorPrimary"
+                    android:textSize="15dp"
+                    android:gravity="center"
+                    android:textColor="@color/white"
+                    android:layout_weight="1"/>
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="60dp"
+                    android:text=""
+                    android:id="@+id/day6B"
+                    android:textColor="@color/black"
+                    android:gravity="center"
+                    android:textSize="10dp"
+                    android:layout_weight="1"/>
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="60dp"
+                    android:text=""
+                    android:id="@+id/day6L"
+                    android:textColor="@color/black"
+                    android:gravity="center"
+                    android:textSize="10dp"
+                    android:layout_weight="1"/>
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="60dp"
+                    android:text=""
+                    android:id="@+id/day6D"
+                    android:textColor="@color/black"
+                    android:gravity="center"
+                    android:textSize="10dp"
+                    android:layout_weight="1"/>
+
+            </TableRow>
+            <TableRow
+                android:layout_width="match_parent"
+                android:layout_weight="1"
+                android:weightSum="4">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="60dp"
+                    android:text="Day 7"
+                    android:background="@color/colorPrimary"
+                    android:textSize="15dp"
+                    android:gravity="center"
+                    android:textColor="@color/white"
+                    android:layout_weight="1"/>
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="60dp"
+                    android:text=""
+                    android:id="@+id/day7B"
+                    android:textColor="@color/black"
+                    android:gravity="center"
+                    android:textSize="10dp"
+                    android:layout_weight="1"/>
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="60dp"
+                    android:text=""
+                    android:id="@+id/day7L"
+                    android:textColor="@color/black"
+                    android:gravity="center"
+                    android:textSize="10dp"
+                    android:layout_weight="1"/>
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="60dp"
+                    android:text=""
+                    android:id="@+id/day7D"
+                    android:textColor="@color/black"
+                    android:gravity="center"
+                    android:textSize="10dp"
+                    android:layout_weight="1"/>
+
+            </TableRow>
+
+        </TableLayout>
+        <Button
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:textSize="30dp"
-            android:text="Monday"
-            android:textStyle="bold"
-            android:layout_marginTop="10dp"
-            android:textColor="@color/black"
-            android:layout_marginLeft="10dp"
-            android:id="@+id/txtDay"/>
-        <RelativeLayout
-            android:layout_width="match_parent"
-            android:layout_height="230dp"
-            android:layout_marginTop="10dp"
-            android:layout_marginLeft="5dp"
-            android:layout_marginRight="5dp"
-            android:background="@drawable/backgroundlayout">
-
-            <TextView
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:text="Breakfast"
-                android:background="@color/white"
-                android:textColor="#ff0000"
-                android:layout_marginLeft="6dp"
-                android:layout_marginTop="6dp"
-                android:layout_marginRight="6dp"
-                android:textSize="25dp"/>
-            <LinearLayout
-                android:layout_width="wrap_content"
-                android:layout_height="186dp"
-                android:layout_marginTop="35dp"
-                android:layout_marginLeft="6dp"
-                android:layout_marginRight="6dp"
-                android:background="@color/white"
-                android:orientation="horizontal"
-                android:weightSum="2">
-                <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="180dp"
-                    android:background="@color/white"
-                    android:orientation="vertical"
-                    android:gravity="center"
-                    android:layout_weight="1">
-                    <ImageView
-                        android:layout_width="250dp"
-                        android:layout_height="155dp"
-                        android:src="@drawable/tea"
-                        android:id="@+id/imgDishB1"/>
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text="Tea"
-                        android:textColor="@color/black"
-                        android:textSize="20dp"
-                        android:id="@+id/txtDishB1"
-                        />
-                </LinearLayout>
-                <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="180dp"
-                    android:background="@color/white"
-                    android:orientation="vertical"
-                    android:gravity="center"
-                    android:layout_weight="1">
-                    <ImageView
-                        android:layout_width="250dp"
-                        android:layout_height="155dp"
-                        android:src="@drawable/paratha"
-                        android:id="@+id/imgDishB2"/>
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text="Paratha"
-                        android:textColor="@color/black"
-                        android:textSize="20dp"
-                        android:id="@+id/txtDishB2"
-                        />
-                </LinearLayout>
-            </LinearLayout>
-        </RelativeLayout>
-        <RelativeLayout
-            android:layout_width="match_parent"
-            android:layout_height="230dp"
-            android:layout_marginTop="10dp"
-            android:background="@drawable/backgroundlayout">
-            <TextView
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:text="Lunch"
-                android:background="@color/white"
-                android:textColor="#ff0000"
-                android:layout_marginLeft="6dp"
-                android:layout_marginTop="6dp"
-                android:layout_marginRight="6dp"
-                android:textSize="25dp"/>
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="190dp"
-                android:layout_marginTop="35dp"
-                android:layout_marginLeft="6dp"
-                android:layout_marginRight="6dp"
-                android:background="@color/white"
-                android:orientation="vertical"
-                android:gravity="center">
-                <ImageView
-                    android:layout_width="250dp"
-                    android:layout_height="155dp"
-                    android:src="@drawable/burger"
-                    android:id="@+id/imgDishLunch"/>
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="Burger"
-                    android:textColor="@color/black"
-                    android:textSize="20dp"
-                    android:id="@+id/txtDishLunch"
-                    />
-            </LinearLayout>
-        </RelativeLayout>
-        <RelativeLayout
-            android:layout_width="match_parent"
-            android:layout_height="230dp"
-            android:layout_marginTop="10dp"
-            android:background="@drawable/backgroundlayout">
-            <TextView
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:text="Dinner"
-                android:background="@color/white"
-                android:textColor="#ff0000"
-                android:layout_marginLeft="6dp"
-                android:layout_marginTop="6dp"
-                android:layout_marginRight="6dp"
-                android:textSize="25dp"/>
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="190dp"
-                android:layout_marginTop="35dp"
-                android:layout_marginLeft="6dp"
-                android:layout_marginRight="6dp"
-                android:background="@color/white"
-                android:orientation="vertical"
-                android:gravity="center">
-
-                <ImageView
-                    android:layout_width="250dp"
-                    android:layout_height="155dp"
-                    android:src="@drawable/DaalMash"
-                    android:id="@+id/imgDishDinner"/>
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="Dal Mash"
-                    android:textColor="@color/black"
-                    android:textSize="20dp"
-                    android:id="@+id/txtDishDinner"
-                    />
-            </LinearLayout>
-        </RelativeLayout>
+            android:text="Update"
+            android:layout_gravity="center"
+            android:id="@+id/btnCreateTime"/>
     </LinearLayout>
     </ScrollView>
 </androidx.constraintlayout.widget.ConstraintLayout>
