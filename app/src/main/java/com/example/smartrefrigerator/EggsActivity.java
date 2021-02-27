@@ -37,7 +37,7 @@ public class EggsActivity extends BaseClass {
     String status;
     int used;
     int thresholdComparison;
-    double thresholddata;
+    double thresholdValues;
     NotificationCompat.Builder notification;
     private static final int uniqueID = 45612;
 
@@ -84,19 +84,38 @@ public class EggsActivity extends BaseClass {
 
 
         //Firebase Data Base
+        dref.addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                if(dataSnapshot.exists()){
+                  //  String  status=dataSnapshot.child("ExpiryNotify/Fruit/tittle").getValue().toString();
+                    String  egg=dataSnapshot.child("Threshhold/Eggs/value").getValue().toString();
+                    thresholdValues =Integer.parseInt(egg);
+
+                }
+
+
+            }
+
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError databaseError) {
+
+            }
+        });
 
         dref.addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
                 status=dataSnapshot.child("Eggs").child("amount").getValue().toString();
-                String  fruit=dataSnapshot.child("Threshhold/Eggs/value").getValue().toString();
-
+              //  String  fruitss=dataSnapshot.child("Threshhold/Eggs/value").getValue().toString();
+               // Toast.makeText(EggsActivity.this, "Value"+fruitss, Toast.LENGTH_SHORT).show();
                 txtRemaining.setText(status  + " g");
                 thresholdComparison=parseInt(status);
                 // String value=thresholdValue.getText().toString();
 
                 // thresholddata= parseInt(value);
-                thresholddata = Integer.parseInt(fruit);
+             //   thresholddata = Integer.parseInt(fruit);
 
                 //Compare threshold value and generate alert
 
@@ -104,7 +123,7 @@ public class EggsActivity extends BaseClass {
                 txtUsed.setText(Integer.toString(used));
                 //  AddData();
 
-                if(thresholddata>thresholdComparison){
+                if(thresholdValues>thresholdComparison){
                     onReceive();
                     saveNotificationfirebase();
                     //   Toast.makeText(IngredientDetailActivity.this, "Refill Box", Toast.LENGTH_SHORT).show();

@@ -38,7 +38,7 @@ public class FruitActivity extends BaseClass {
     String status;
     int used;
     int thresholdComparison;
-    double thresholddata;
+    double thresholdValues;
     NotificationCompat.Builder notification;
     private static final int uniqueID = 45612;
     @Override
@@ -65,8 +65,32 @@ public class FruitActivity extends BaseClass {
                 txtDays.setText(f.format(hour));
                 txtHours.setText(f.format(min));
                 txtMinutes.setText(f.format(sec));
-                dref.child("ExpiryNotify/Fruit/tittle").setValue( "No Food Expired" );
 
+//                dref.child("ExpiryTime/Fruit/hours").setValue(hour );
+//                dref.child("ExpiryNotify/Fruit/min").setValue( min );
+//                dref.child("ExpiryNotify/Fruit/sec").setValue( sec );
+
+                dref.child("ExpiryNotify/Fruit/tittle").setValue( "No Food Expired" );
+//                dref.addValueEventListener(new ValueEventListener() {
+//                    @Override
+//                    public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+//
+//                        String  hor=dataSnapshot.child("ExpiryTime/Fruit/hours").getValue().toString();
+//                        String  mins=dataSnapshot.child("ExpiryNotify/Fruit/min").getValue().toString();
+//                        String  secd=dataSnapshot.child("ExpiryNotify/Fruit/sec").getValue().toString();
+//                        txtDays.setText(f.format(hor));
+//                        txtHours.setText(f.format(mins));
+//                        txtMinutes.setText(f.format(secd));
+//
+//
+//                    }
+//
+//
+//                    @Override
+//                    public void onCancelled(@NonNull DatabaseError databaseError) {
+//
+//                    }
+//                });
 
             }
             // When the task is over it will print 00
@@ -85,6 +109,25 @@ public class FruitActivity extends BaseClass {
 
 
         //Firebase Data Base
+        dref.addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                if(dataSnapshot.exists()){
+                    //  String  status=dataSnapshot.child("ExpiryNotify/Fruit/tittle").getValue().toString();
+                    String  fruit=dataSnapshot.child("Threshhold/Fruits/value").getValue().toString();
+                    thresholdValues =Integer.parseInt(fruit);
+
+                }
+
+
+            }
+
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError databaseError) {
+
+            }
+        });
 
         dref.addValueEventListener(new ValueEventListener() {
             @Override
@@ -95,7 +138,6 @@ public class FruitActivity extends BaseClass {
                // String value=thresholdValue.getText().toString();
 
                // thresholddata= parseInt(value);
-                thresholddata = 500;
 
                 //Compare threshold value and generate alert
 
@@ -103,7 +145,7 @@ public class FruitActivity extends BaseClass {
                 txtUsed.setText(Integer.toString(used) + " g");
                 //  AddData();
 
-                if(thresholddata>thresholdComparison){
+                if(thresholdValues>thresholdComparison){
                     onReceive();
                     saveNotificationfirebase();
                     //   Toast.makeText(IngredientDetailActivity.this, "Refill Box", Toast.LENGTH_SHORT).show();

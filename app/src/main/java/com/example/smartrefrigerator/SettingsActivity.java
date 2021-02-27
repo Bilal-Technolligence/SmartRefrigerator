@@ -48,7 +48,12 @@ public class SettingsActivity extends BaseClass {
         txtVagetables = findViewById(R.id.txtvegvalue);
         btnSave = findViewById(R.id.btnSaveValue);
         ////Switch Button ////.
-
+        eggs= txtEggs.getText().toString();
+        fruits=txtFruits.getText().toString();
+        vegetables=txtVagetables.getText().toString();
+        dref.child("Threshhold/Eggs/value").setValue(eggs).toString();
+        dref.child("Threshhold/Fruits/value").setValue(fruits).toString();
+        dref.child("Threshhold/Vagetables/value").setValue(vegetables).toString();
 
 btnSave.setOnClickListener(new View.OnClickListener() {
     @Override
@@ -59,7 +64,7 @@ btnSave.setOnClickListener(new View.OnClickListener() {
         dref.child("Threshhold/Eggs/value").setValue(eggs).toString();
         dref.child("Threshhold/Fruits/value").setValue(fruits).toString();
         dref.child("Threshhold/Vagetables/value").setValue(vegetables).toString();
-        Toast.makeText(SettingsActivity.this, "Values saved Successfully"+eggs+""+fruits+""+vegetables, Toast.LENGTH_SHORT).show();
+        Toast.makeText(SettingsActivity.this, "Values saved Successfully", Toast.LENGTH_SHORT).show();
     }
 });
 
@@ -75,9 +80,9 @@ btnSave.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
 
-                    String  fruit=dataSnapshot.child("Threshhold/Eggs/value").getValue().toString();
+                    String  egg=dataSnapshot.child("Threshhold/Eggs/value").getValue().toString();
                    String  vagetable=dataSnapshot.child("Threshhold/Fruits/value").getValue().toString();
-                    String  egg=dataSnapshot.child("Threshhold/Vagetables/value").getValue().toString();
+                    String  fruit=dataSnapshot.child("Threshhold/Vagetables/value").getValue().toString();
                     txtEggs.setText(String.valueOf(egg));
                     txtFruits.setText(String.valueOf(fruit));
                     txtVagetables.setText(String.valueOf(vagetable));
