@@ -123,7 +123,7 @@ public class VegetableActivity extends BaseClass {
         dref.addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
-                status=dataSnapshot.child("Vegetables").child("amount").getValue().toString();
+                status=dataSnapshot.child("Vagetables").child("amount").getValue().toString();
                 txtRemaining.setText(status  + " g");
                 thresholdComparison=parseInt(status);
                 // String value=thresholdValue.getText().toString();
