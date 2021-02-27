@@ -9,7 +9,8 @@
         android:roundIcon="@drawable/logo"
         android:supportsRtl="true"
         android:theme="@style/Theme.SmartRefrigerator">
-        <activity android:name=".NotificationActivity"></activity>
+        <activity android:name=".UpdateDiet"></activity>
+        <activity android:name=".NotificationActivity" />
         <activity android:name=".EggsActivity" />
         <activity android:name=".VegetableActivity" />
         <activity

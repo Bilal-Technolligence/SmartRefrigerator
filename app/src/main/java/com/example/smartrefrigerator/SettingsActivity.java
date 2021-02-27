@@ -5,10 +5,12 @@ import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.Button;
 import android.widget.CompoundButton;
 import android.widget.EditText;
 import android.widget.Switch;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.ActionBar;
@@ -16,99 +18,121 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.preference.PreferenceFragmentCompat;
 
 import com.google.android.material.bottomnavigation.BottomNavigationView;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.ValueEventListener;
 
 public class SettingsActivity extends BaseClass {
     private static final String TAG = "myLog";
  //   DiscreteSeekBar whistleSeekBar, volumeSeekBar, vibrationSeekBar;
-    SharedPreferences myPrefs;
-    SharedServices sharedPref;
-    private int eggs;
-    private int fruits;
-    private int vegetables;
-    private boolean vibration;
-    private int noNotification;
-    private int noSound;
+   // SharedPreferences myPrefs;
+   // SharedServices sharedPref;
+    String eggs,fruits,vegetables;
     EditText txtVagetables, txtFruits, txtEggs;
     Switch txtVibration,txtNoticationSound,txtOffNotification;
-    private int flashProgress;
+  //  DatabaseReference dref= FirebaseDatabase.getInstance().getReference();
+    FirebaseDatabase firebaseDatabase = FirebaseDatabase.getInstance();
+    DatabaseReference dref = firebaseDatabase.getReference();
+    Button btnSave;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
       //  setContentView(R.layout.settings_activity);
 
-        sharedPref = new SharedServices(SettingsActivity.this);
-        myPrefs = getApplicationContext().getSharedPreferences("MyPref", MODE_PRIVATE);
-        eggs = sharedPref.getInt("Key_Eggs");
-        fruits = sharedPref.getInt("Key_Fruits");
-       vegetables = sharedPref.getInt("Key_Vegetables");
-        vibration = sharedPref.getBool("Key_OnVibration");
 
         txtEggs = findViewById(R.id.txtEggsvalue);
         txtFruits = findViewById(R.id.txtFruitsvalue);
         txtVagetables = findViewById(R.id.txtvegvalue);
-        ////Switch Button ////
-        txtNoticationSound =(Switch) findViewById(R.id.notisoundswitch);
-        txtOffNotification =(Switch) findViewById(R.id.notishowswitch);
-        txtVibration =(Switch) findViewById(R.id.vibswitch);
+        btnSave = findViewById(R.id.btnSaveValue);
+        ////Switch Button ////.
 
 
+btnSave.setOnClickListener(new View.OnClickListener() {
+    @Override
+    public void onClick(View v) {
+        eggs= txtEggs.getText().toString();
+        fruits=txtFruits.getText().toString();
+        vegetables=txtVagetables.getText().toString();
+        dref.child("Threshhold/Eggs/value").setValue(eggs).toString();
+        dref.child("Threshhold/Fruits/value").setValue(fruits).toString();
+        dref.child("Threshhold/Vagetables/value").setValue(vegetables).toString();
+        Toast.makeText(SettingsActivity.this, "Values saved Successfully"+eggs+""+fruits+""+vegetables, Toast.LENGTH_SHORT).show();
+    }
+});
 
 
-        txtEggs.setText(String.valueOf(eggs));
-        txtFruits.setText(String.valueOf(fruits));
-
-        txtVagetables.setText(String.valueOf(vegetables));
-
-        int egg = Integer.parseInt(txtEggs.getText().toString());
-        int veg = Integer.parseInt(txtVagetables.getText().toString());
-        int fruit = Integer.parseInt(txtFruits.getText().toString());
+       // dref.child("Notifications/Eggs/datetime").setValue(currentDateTimeString);
 
 
-        sharedPref.setInt("Key_Eggs", egg);
-        sharedPref.setInt("Key_Fruits", fruit);
-        sharedPref.setInt("Key_Vegetables", veg);
+//        txtNoticationSound =(Switch) findViewById(R.id.notisoundswitch);
+//        txtOffNotification =(Switch) findViewById(R.id.notishowswitch);
+//        txtVibration =(Switch) findViewById(R.id.vibswitch);
 
-
-        txtVibration.setOnCheckedChangeListener( new CompoundButton.OnCheckedChangeListener() {
+        dref.addValueEventListener(new ValueEventListener() {
             @Override
-            public void onCheckedChanged(CompoundButton compoundButton, boolean b) {
-                if(txtVibration.isChecked()){
-                    sharedPref.setBool("Key_OnVibration", true);
-                }
-                else
-                {
-                    sharedPref.setBool("Key_OnVibration", false);
+            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
 
-                }
+                    String  fruit=dataSnapshot.child("Threshhold/Eggs/value").getValue().toString();
+                   String  vagetable=dataSnapshot.child("Threshhold/Fruits/value").getValue().toString();
+                    String  egg=dataSnapshot.child("Threshhold/Vagetables/value").getValue().toString();
+                    txtEggs.setText(String.valueOf(egg));
+                    txtFruits.setText(String.valueOf(fruit));
+                    txtVagetables.setText(String.valueOf(vagetable));
+
+
             }
-        } );
-        txtNoticationSound.setOnCheckedChangeListener( new CompoundButton.OnCheckedChangeListener() {
+
+
             @Override
-            public void onCheckedChanged(CompoundButton compoundButton, boolean b) {
-                if(txtVibration.isChecked()){
-                    sharedPref.setBool("Key_NoSound", true);
-                }
-                else
-                {
-                    sharedPref.setBool("Key_NoSound", false);
+            public void onCancelled(@NonNull DatabaseError databaseError) {
 
-                }
             }
-        } );
-        txtOffNotification.setOnCheckedChangeListener( new CompoundButton.OnCheckedChangeListener() {
-            @Override
-            public void onCheckedChanged(CompoundButton compoundButton, boolean b) {
-                if(txtVibration.isChecked()){
-                    sharedPref.setBool("Key_NoNotify", true);
-                }
-                else
-                {
-                    sharedPref.setBool("Key_NoNotify", false);
+        });
 
-                }
-            }
-        } );
+
+//        txtVibration.setOnCheckedChangeListener( new CompoundButton.OnCheckedChangeListener() {
+//            @Override
+//            public void onCheckedChanged(CompoundButton compoundButton, boolean b) {
+//                if(txtVibration.isChecked()){
+//                   // sharedPref.setBool("Key_OnVibration", true);
+//                    Toast.makeText(SettingsActivity.this, "ON", Toast.LENGTH_SHORT).show();
+//                }
+//                else
+//                {
+//                    Toast.makeText(SettingsActivity.this, "OFF", Toast.LENGTH_SHORT).show();
+//
+//                }
+//            }
+//        } );
+//        txtNoticationSound.setOnCheckedChangeListener( new CompoundButton.OnCheckedChangeListener() {
+//            @Override
+//            public void onCheckedChanged(CompoundButton compoundButton, boolean b) {
+//                if(txtVibration.isChecked()){
+//                    Toast.makeText(SettingsActivity.this, "ON", Toast.LENGTH_SHORT).show();
+//                }
+//                else
+//                {
+//                    Toast.makeText(SettingsActivity.this, "OFF", Toast.LENGTH_SHORT).show();
+//
+//                }
+//            }
+//        } );
+//        txtOffNotification.setOnCheckedChangeListener( new CompoundButton.OnCheckedChangeListener() {
+//            @Override
+//            public void onCheckedChanged(CompoundButton compoundButton, boolean b) {
+//                if(txtVibration.isChecked()){
+//                    Toast.makeText(SettingsActivity.this, "ON", Toast.LENGTH_SHORT).show();
+//                }
+//                else
+//                {
+//                    Toast.makeText(SettingsActivity.this, "OFF", Toast.LENGTH_SHORT).show();
+//
+//                }
+//            }
+//        } );
 
 
     }

@@ -89,12 +89,14 @@ public class EggsActivity extends BaseClass {
             @Override
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
                 status=dataSnapshot.child("Eggs").child("amount").getValue().toString();
+                String  fruit=dataSnapshot.child("Threshhold/Eggs/value").getValue().toString();
+
                 txtRemaining.setText(status  + " g");
                 thresholdComparison=parseInt(status);
                 // String value=thresholdValue.getText().toString();
 
                 // thresholddata= parseInt(value);
-                thresholddata = 4;
+                thresholddata = Integer.parseInt(fruit);
 
                 //Compare threshold value and generate alert
 

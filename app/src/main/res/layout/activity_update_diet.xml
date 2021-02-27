@@ -4,8 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/colorWhite"
-    tools:context=".DietActivity">
+    tools:context=".UpdateDiet">
     <ScrollView
         android:layout_width="match_parent"
         android:layout_height="match_parent">
@@ -74,30 +73,33 @@
                         android:textColor="@color/white"
                         android:layout_weight="1"/>
 
-                    <TextView
+                    <EditText
                         android:layout_width="wrap_content"
                         android:layout_height="60dp"
                         android:text=""
+                        android:maxLines="3"
                         android:id="@+id/day1B"
                         android:textColor="@color/black"
                         android:gravity="center"
                         android:textSize="10dp"
                         android:layout_weight="1"/>
 
-                    <TextView
+                    <EditText
                         android:layout_width="wrap_content"
                         android:layout_height="60dp"
                         android:text=""
+                        android:maxLines="3"
                         android:id="@+id/day1L"
                         android:textColor="@color/black"
                         android:gravity="center"
                         android:textSize="10dp"
                         android:layout_weight="1"/>
 
-                    <TextView
+                    <EditText
                         android:layout_width="wrap_content"
                         android:layout_height="60dp"
                         android:text=""
+                        android:maxLines="3"
                         android:id="@+id/day1D"
                         android:textColor="@color/black"
                         android:gravity="center"
@@ -120,30 +122,33 @@
                         android:textColor="@color/white"
                         android:layout_weight="1"/>
 
-                    <TextView
+                    <EditText
                         android:layout_width="wrap_content"
                         android:layout_height="60dp"
                         android:text=""
+                        android:maxLines="3"
                         android:id="@+id/day2B"
                         android:textColor="@color/black"
                         android:gravity="center"
                         android:textSize="10dp"
                         android:layout_weight="1"/>
 
-                    <TextView
+                    <EditText
                         android:layout_width="wrap_content"
                         android:layout_height="60dp"
                         android:text=""
+                        android:maxLines="3"
                         android:id="@+id/day2L"
                         android:textColor="@color/black"
                         android:gravity="center"
                         android:textSize="10dp"
                         android:layout_weight="1"/>
 
-                    <TextView
+                    <EditText
                         android:layout_width="wrap_content"
                         android:layout_height="60dp"
                         android:text=""
+                        android:maxLines="3"
                         android:id="@+id/day2D"
                         android:textColor="@color/black"
                         android:gravity="center"
@@ -166,30 +171,33 @@
                         android:textColor="@color/white"
                         android:layout_weight="1"/>
 
-                    <TextView
+                    <EditText
                         android:layout_width="wrap_content"
                         android:layout_height="60dp"
                         android:text=""
+                        android:maxLines="3"
                         android:id="@+id/day3B"
                         android:textColor="@color/black"
                         android:gravity="center"
                         android:textSize="10dp"
                         android:layout_weight="1"/>
 
-                    <TextView
+                    <EditText
                         android:layout_width="wrap_content"
                         android:layout_height="60dp"
                         android:text=""
+                        android:maxLines="3"
                         android:id="@+id/day3L"
                         android:textColor="@color/black"
                         android:gravity="center"
                         android:textSize="10dp"
                         android:layout_weight="1"/>
 
-                    <TextView
+                    <EditText
                         android:layout_width="wrap_content"
                         android:layout_height="60dp"
                         android:text=""
+                        android:maxLines="3"
                         android:id="@+id/day3D"
                         android:textColor="@color/black"
                         android:gravity="center"
@@ -212,30 +220,33 @@
                         android:textColor="@color/white"
                         android:layout_weight="1"/>
 
-                    <TextView
+                    <EditText
                         android:layout_width="wrap_content"
                         android:layout_height="60dp"
                         android:text=""
+                        android:maxLines="3"
                         android:id="@+id/day4B"
                         android:textColor="@color/black"
                         android:gravity="center"
                         android:textSize="10dp"
                         android:layout_weight="1"/>
 
-                    <TextView
+                    <EditText
                         android:layout_width="wrap_content"
                         android:layout_height="60dp"
                         android:text=""
+                        android:maxLines="3"
                         android:id="@+id/day4L"
                         android:textColor="@color/black"
                         android:gravity="center"
                         android:textSize="10dp"
                         android:layout_weight="1"/>
 
-                    <TextView
+                    <EditText
                         android:layout_width="wrap_content"
                         android:layout_height="60dp"
                         android:text=""
+                        android:maxLines="3"
                         android:id="@+id/day4D"
                         android:textColor="@color/black"
                         android:gravity="center"
@@ -258,30 +269,33 @@
                         android:textColor="@color/white"
                         android:layout_weight="1"/>
 
-                    <TextView
+                    <EditText
                         android:layout_width="wrap_content"
                         android:layout_height="60dp"
                         android:text=""
+                        android:maxLines="3"
                         android:id="@+id/day5B"
                         android:textColor="@color/black"
                         android:gravity="center"
                         android:textSize="10dp"
                         android:layout_weight="1"/>
 
-                    <TextView
+                    <EditText
                         android:layout_width="wrap_content"
                         android:layout_height="60dp"
                         android:text=""
+                        android:maxLines="3"
                         android:id="@+id/day5L"
                         android:textColor="@color/black"
                         android:gravity="center"
                         android:textSize="10dp"
                         android:layout_weight="1"/>
 
-                    <TextView
+                    <EditText
                         android:layout_width="wrap_content"
                         android:layout_height="60dp"
                         android:text=""
+                        android:maxLines="3"
                         android:id="@+id/day5D"
                         android:textColor="@color/black"
                         android:gravity="center"
@@ -304,30 +318,33 @@
                         android:textColor="@color/white"
                         android:layout_weight="1"/>
 
-                    <TextView
+                    <EditText
                         android:layout_width="wrap_content"
                         android:layout_height="60dp"
                         android:text=""
+                        android:maxLines="3"
                         android:id="@+id/day6B"
                         android:textColor="@color/black"
                         android:gravity="center"
                         android:textSize="10dp"
                         android:layout_weight="1"/>
 
-                    <TextView
+                    <EditText
                         android:layout_width="wrap_content"
                         android:layout_height="60dp"
                         android:text=""
+                        android:maxLines="3"
                         android:id="@+id/day6L"
                         android:textColor="@color/black"
                         android:gravity="center"
                         android:textSize="10dp"
                         android:layout_weight="1"/>
 
-                    <TextView
+                    <EditText
                         android:layout_width="wrap_content"
                         android:layout_height="60dp"
                         android:text=""
+                        android:maxLines="3"
                         android:id="@+id/day6D"
                         android:textColor="@color/black"
                         android:gravity="center"
@@ -350,30 +367,33 @@
                         android:textColor="@color/white"
                         android:layout_weight="1"/>
 
-                    <TextView
+                    <EditText
                         android:layout_width="wrap_content"
                         android:layout_height="60dp"
                         android:text=""
+                        android:maxLines="3"
                         android:id="@+id/day7B"
                         android:textColor="@color/black"
                         android:gravity="center"
                         android:textSize="10dp"
                         android:layout_weight="1"/>
 
-                    <TextView
+                    <EditText
                         android:layout_width="wrap_content"
                         android:layout_height="60dp"
                         android:text=""
+                        android:maxLines="3"
                         android:id="@+id/day7L"
                         android:textColor="@color/black"
                         android:gravity="center"
                         android:textSize="10dp"
                         android:layout_weight="1"/>
 
-                    <TextView
+                    <EditText
                         android:layout_width="wrap_content"
                         android:layout_height="60dp"
                         android:text=""
+                        android:maxLines="3"
                         android:id="@+id/day7D"
                         android:textColor="@color/black"
                         android:gravity="center"
@@ -386,9 +406,9 @@
             <Button
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Update"
+                android:text="Save"
                 android:layout_gravity="center"
-                android:id="@+id/btnUpdate"/>
+                android:id="@+id/btnSave"/>
         </LinearLayout>
     </ScrollView>
     <com.google.android.material.bottomnavigation.BottomNavigationView
@@ -406,4 +426,4 @@
         android:layout_alignParentBottom="true"
         app:menu="@menu/navigation"/>
 
-</androidx.constraintlayout.widget.ConstraintLayout>
+    </androidx.constraintlayout.widget.ConstraintLayout>

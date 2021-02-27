@@ -26,29 +26,14 @@ public class MainActivity extends BaseClass {
     CardView fruits,vegetables,eggs;
     TextView fruitExipry,detail;
     SharedServices sharedPref;
-    SharedPreferences myPrefs;
     DatabaseReference dref= FirebaseDatabase.getInstance().getReference();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
        //  setContentView(R.layout.activity_main);
-        sharedPref = new SharedServices(MainActivity.this);
+       // sharedPref = new SharedServices(MainActivity.this);
         //First time when App Installed\\\
-        final SharedPreferences prefs = PreferenceManager.getDefaultSharedPreferences(this);//this==context
-        if (!prefs.contains("FirstTime")) {
-
-            sharedPref.setInt("Key_Eggs", 5);
-            sharedPref.setInt("Key_Fruits", 500);
-            sharedPref.setInt("Key_Vegetables", 500);
-         //   sharedPref.setBool("Key_OnVibration", true);
-
-            SharedPreferences.Editor editor = prefs.edit();
-            editor.putBoolean("FirstTime", true);
-            editor.commit();
-            //more code....
-
-        }
         fruitExipry =(TextView)findViewById(R.id.txtfoodExipry);
 
          //DataBase
