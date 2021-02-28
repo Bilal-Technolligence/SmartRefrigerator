@@ -1,9 +1,10 @@
 package com.example.smartrefrigerator;
 
-import android.app.Activity;
+import android.content.Context;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageView;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
@@ -11,41 +12,28 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import java.util.ArrayList;
 
-public class NotificationAdapter extends RecyclerView.Adapter<NotificationAdapter.MyViewHolder> {
+public class NotificationListAdapter extends RecyclerView.Adapter<NotificationListAdapter.ViewHolder> {
     ArrayList<notificationAttr> notificationAttrs;
-    Activity context;
+    private Context context;
 
-    public NotificationAdapter(ArrayList<notificationAttr> notificationAttrs, Activity context) {
+    public NotificationListAdapter(ArrayList<notificationAttr> notificationAttrs, Context context) {
         this.context = context;
         this.notificationAttrs = notificationAttrs;
     }
 
     @NonNull
     @Override
-    public MyViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
+    public ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
         View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.notification_item, parent, false);
-        return new MyViewHolder(view);
+        return new ViewHolder(view);
     }
 
     @Override
-    public void onBindViewHolder(@NonNull MyViewHolder holder, final int position) {
+    public void onBindViewHolder(@NonNull ViewHolder holder, final int position) {
         holder.desc.setText(notificationAttrs.get(position).getDescription());
         holder.datetime.setText(notificationAttrs.get(position).getDatetime());
         holder.title.setText(notificationAttrs.get(position).getTitle());
 
-//        holder.itemView.setOnClickListener( new View.OnClickListener() {
-//            @Override
-//            public void onClick(View v) {
-//                final String latitude = addServiceAttrs.get(position).getLat();
-//                final String longitude = addServiceAttrs.get(position).getLon();
-//
-//                Intent intent = new Intent( context, DirectionOnMap.class );
-//                intent.putExtra("Latitude", latitude);
-//                intent.putExtra("Longitude", longitude);
-//                context.startActivity( intent );
-//
-//            }
-//        } );
 
     }
 
@@ -54,14 +42,15 @@ public class NotificationAdapter extends RecyclerView.Adapter<NotificationAdapte
         return notificationAttrs.size();
     }
 
-    public class MyViewHolder extends RecyclerView.ViewHolder {
-        public TextView desc,datetime,title;
-        public MyViewHolder(@NonNull View itemView) {
+    public class ViewHolder extends RecyclerView.ViewHolder {
+        TextView desc,datetime,title;
+
+        public ViewHolder(@NonNull View itemView) {
             super(itemView);
             title = (TextView) itemView.findViewById(R.id.notification_title);
             desc = (TextView) itemView.findViewById(R.id.notification_description);
             datetime=(TextView) itemView.findViewById( R.id.notification_datetime );
+
         }
     }
-
 }

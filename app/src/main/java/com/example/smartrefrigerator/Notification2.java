@@ -6,13 +6,9 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import android.app.ProgressDialog;
-import android.content.Intent;
 import android.os.Bundle;
-import android.view.MenuItem;
-import android.view.View;
 import android.widget.Toast;
 
-import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
@@ -23,19 +19,18 @@ import com.google.firebase.database.ValueEventListener;
 import java.util.ArrayList;
 import java.util.Collections;
 
-public class NotificationActivity extends BaseClass {
-
+public class Notification2 extends BaseClass {
     RecyclerView recyclerView;
     FirebaseDatabase firebaseDatabase = FirebaseDatabase.getInstance();
     DatabaseReference databaseReference = firebaseDatabase.getReference();
     ArrayList<notificationAttr> notificationAttrs;
     ProgressDialog progressDialog;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-       // setContentView(R.layout.activity_notification);
-
-        recyclerView = findViewById(R.id.notification_recyclerview);
+        //setContentView(R.layout.activity_notification2);
+        recyclerView = findViewById(R.id.recycler);
         progressDialog = new ProgressDialog(this);
         progressDialog.setMessage("Loading..... ");
         progressDialog.show();
@@ -67,37 +62,11 @@ public class NotificationActivity extends BaseClass {
 
             }
         });
-
-
-        BottomNavigationView bottomNavigationView = findViewById(R.id.navigationView);
-        //set Home Seleceted
-        bottomNavigationView.setSelectedItemId(R.id.nav_notification);
-        bottomNavigationView.setOnNavigationItemSelectedListener(new BottomNavigationView.OnNavigationItemSelectedListener() {
-            @Override
-            public boolean onNavigationItemSelected(@NonNull MenuItem item) {
-                switch (item.getItemId()) {
-                    case R.id.nav_home:
-                        startActivity(new Intent(getApplicationContext(), MainActivity.class));
-                        overridePendingTransition(0,0);
-                        return true;
-                    case R.id.nav_setting:
-                        startActivity(new Intent(getApplicationContext(), SettingsActivity.class));
-                        overridePendingTransition(0,0);
-                        return true;
-                    case R.id.nav_diet:
-                        startActivity(new Intent(getApplicationContext(), DietActivity.class));
-                        overridePendingTransition(0,0);
-                        return true;
-                }
-                return false;
-            }
-        });
-
     }
 
     @Override
     int getContentViewId() {
-        return R.layout.activity_notification;
+        return R.layout.activity_notification2;
     }
 
     @Override

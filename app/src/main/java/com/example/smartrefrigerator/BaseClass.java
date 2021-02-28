@@ -36,7 +36,7 @@ public abstract class BaseClass extends AppCompatActivity implements BottomNavig
         if (itemId == R.id.nav_home) {
             startActivity(new Intent(this, MainActivity.class));
         } else if (itemId == R.id.nav_notification) {
-            startActivity(new Intent(this, NotificationActivity.class));
+            startActivity(new Intent(this, Notification2.class));
         } else if (itemId == R.id.nav_diet) {
             startActivity(new Intent(this, DietActivity.class));
 
