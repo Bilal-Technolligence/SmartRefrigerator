@@ -207,7 +207,7 @@
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:layout_gravity="center"
-                            android:text="Hour"
+                            android:text="Hours"
                             android:textColor="@android:color/black"
                             android:textSize="20dp"
                             android:textStyle="normal" />
@@ -234,7 +234,7 @@
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:layout_gravity="center"
-                            android:text="Minute"
+                            android:text="Minutes"
                             android:textColor="@android:color/black"
                             android:textSize="20dp"
                             android:textStyle="normal" />
@@ -261,7 +261,7 @@
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:layout_gravity="center"
-                            android:text="Second"
+                            android:text="Seconds"
                             android:textColor="@android:color/black"
                             android:textSize="20dp"
                             android:textStyle="normal" />

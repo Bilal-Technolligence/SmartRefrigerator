@@ -31,7 +31,7 @@ import java.util.Date;
 
 import static java.lang.Integer.parseInt;
 
-public class FruitActivity extends AppCompatActivity {
+public class FruitActivity extends BaseClass {
     DatabaseReference dref= FirebaseDatabase.getInstance().getReference();
 
     TextView txtRemaining, txtUsed ,txtThreshold, thresholdValue,txtDays,txtMinutes,txtHours;
@@ -44,7 +44,7 @@ public class FruitActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_fruit);
+     //   setContentView(R.layout.activity_fruit);
         //https://stackoverflow.com/questions/10032003/how-to-make-a-countdown-timer-in-android
         txtRemaining=(TextView) findViewById(R.id.txtremaining);
         txtUsed=(TextView) findViewById(R.id.txtused);
@@ -119,33 +119,17 @@ public class FruitActivity extends AppCompatActivity {
 
             }
         });
-        BottomNavigationView bottomNavigationView = findViewById(R.id.navigationView);
-        //set Home Seleceted
-        bottomNavigationView.setSelectedItemId(R.id.nav_home);
-        bottomNavigationView.setOnNavigationItemSelectedListener(new BottomNavigationView.OnNavigationItemSelectedListener() {
-            @Override
-            public boolean onNavigationItemSelected(@NonNull MenuItem item) {
-                switch (item.getItemId()) {
-                    case R.id.nav_diet:
-                        startActivity(new Intent(getApplicationContext(), DietActivity.class));
-                        overridePendingTransition(0,0);
-                        return true;
-                    case R.id.nav_home:
-                        startActivity(new Intent(getApplicationContext(), MainActivity.class));
-                        overridePendingTransition(0,0);
-                        return true;
-                    case R.id.nav_setting:
-                        startActivity(new Intent(getApplicationContext(), SettingsActivity.class));
-                        overridePendingTransition(0,0);
-                        return true;
-                    case R.id.nav_notification:
-                        startActivity(new Intent(getApplicationContext(), NotificationActivity.class));
-                        overridePendingTransition(0,0);
-                        return true;
-                }
-                return false;
-            }
-        });
+
+    }
+
+    @Override
+    int getContentViewId() {
+        return R.layout.activity_fruit;
+    }
+
+    @Override
+    int getNavigationMenuItemId() {
+        return R.id.nav_home;
     }
 
     //To Genrate a notification on threshold value

@@ -2,6 +2,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
     android:background="#27C3D6"
     android:orientation="vertical">
 
@@ -57,7 +58,7 @@
                         android:textStyle="bold" />
 
                     <EditText
-                        android:id="@+id/textvegvalue"
+                        android:id="@+id/txtvegvalue"
                         android:layout_width="0dp"
                         android:text="2kg"
                         android:gravity="fill_vertical"
@@ -92,7 +93,7 @@
                         android:textStyle="bold" />
 
                     <EditText
-                        android:id="@+id/txtFruits"
+                        android:id="@+id/txtFruitsvalue"
                         android:layout_width="0dp"
                         android:text="1kg"
                         android:gravity="fill_vertical"
@@ -127,7 +128,7 @@
                         android:textStyle="bold" />
 
                     <EditText
-                        android:id="@+id/txtEggs"
+                        android:id="@+id/txtEggsvalue"
                         android:layout_width="0dp"
                         android:text="5"
                         android:gravity="fill_vertical"

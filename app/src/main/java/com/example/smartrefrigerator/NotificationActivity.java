@@ -11,16 +11,48 @@ import android.view.MenuItem;
 import android.view.View;
 
 import com.google.android.material.bottomnavigation.BottomNavigationView;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.ValueEventListener;
 
-public class NotificationActivity extends AppCompatActivity {
+import java.util.ArrayList;
 
+public class NotificationActivity extends BaseClass {
+    FirebaseDatabase firebaseDatabase = FirebaseDatabase.getInstance();
+    DatabaseReference databaseReference = firebaseDatabase.getReference();
+    ArrayList<notificationAttr> pacakgeAttrs;
+    NotificationAdapter adapter;
+    RecyclerView recyclerView;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_notification);
+       // setContentView(R.layout.activity_notification);
+
+        recyclerView=findViewById(R.id.notification_recyclerview);
+        pacakgeAttrs = new ArrayList<notificationAttr>();
+        recyclerView.setLayoutManager(new LinearLayoutManager(this));
+        databaseReference.child("Notifications").addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                pacakgeAttrs.clear();
+                //profiledata.clear();
+                for(DataSnapshot dataSnapshot1 : dataSnapshot.getChildren()){
+                    notificationAttr p = dataSnapshot1.getValue(notificationAttr.class);
+                    pacakgeAttrs.add(p);
+                }
+
+                recyclerView.setAdapter(new NotificationAdapter(pacakgeAttrs , NotificationActivity.this));
 
 
+            }
 
+            @Override
+            public void onCancelled(@NonNull DatabaseError databaseError) {
+
+            }
+        });
 
         BottomNavigationView bottomNavigationView = findViewById(R.id.navigationView);
         //set Home Seleceted
@@ -46,5 +78,15 @@ public class NotificationActivity extends AppCompatActivity {
             }
         });
 
+    }
+
+    @Override
+    int getContentViewId() {
+        return R.layout.activity_notification;
+    }
+
+    @Override
+    int getNavigationMenuItemId() {
+        return R.id.nav_notification;
     }
 }

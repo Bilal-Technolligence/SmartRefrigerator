@@ -16,6 +16,11 @@
             android:layout_height="match_parent"
             android:gravity="center_horizontal"
             android:orientation="vertical">
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="100dp"
+                android:text="value"
+                android:id="@+id/txttesting"/>
             <ImageView
                 android:id="@+id/imagelogo"
                 android:layout_width="match_parent"
@@ -207,7 +212,7 @@
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:layout_gravity="center"
-                            android:text="Days"
+                            android:text="Hours"
                             android:textColor="@android:color/black"
                             android:textSize="20dp"
                             android:textStyle="normal" />
@@ -234,7 +239,7 @@
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:layout_gravity="center"
-                            android:text="Hour"
+                            android:text="Minutes"
                             android:textColor="@android:color/black"
                             android:textSize="20dp"
                             android:textStyle="normal" />
@@ -261,7 +266,7 @@
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:layout_gravity="center"
-                            android:text="Minute"
+                            android:text="Seconds"
                             android:textColor="@android:color/black"
                             android:textSize="20dp"
                             android:textStyle="normal" />
