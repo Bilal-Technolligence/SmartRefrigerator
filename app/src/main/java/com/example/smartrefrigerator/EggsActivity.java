@@ -4,15 +4,18 @@ import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.app.NotificationCompat;
 
+import android.app.AlarmManager;
 import android.app.Notification;
 import android.app.NotificationManager;
 import android.app.PendingIntent;
 import android.app.TaskStackBuilder;
+import android.content.Context;
 import android.content.Intent;
 import android.media.RingtoneManager;
 import android.net.Uri;
 import android.os.Bundle;
 import android.os.CountDownTimer;
+import android.os.SystemClock;
 import android.view.MenuItem;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -37,9 +40,10 @@ public class EggsActivity extends BaseClass {
     String status;
     int used;
     int thresholdComparison;
-    double thresholddata;
-    NotificationCompat.Builder notification;
-    private static final int uniqueID = 45612;
+    double thresholdValues;
+    /////Only for Notification////
+    public static final String NOTIFICATION_CHANNEL_ID = "10001" ;
+    private final static String default_notification_channel_id = "default" ;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -75,6 +79,7 @@ public class EggsActivity extends BaseClass {
                 String currentDateTimeString = DateFormat.getDateTimeInstance().format(new Date());
                 dref.child("ExpiryNotify/Eggs/datetime").setValue(currentDateTimeString);
                 Toast.makeText(EggsActivity.this, "Eggs Expired", Toast.LENGTH_SHORT).show();
+               // onExpire();
                 txtDays.setText("00");
                 txtMinutes.setText("00");
                 txtHours.setText("00");
@@ -84,17 +89,38 @@ public class EggsActivity extends BaseClass {
 
 
         //Firebase Data Base
+        dref.addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                if(dataSnapshot.exists()){
+                  //  String  status=dataSnapshot.child("ExpiryNotify/Fruit/tittle").getValue().toString();
+                    String  egg=dataSnapshot.child("Threshhold/Eggs/value").getValue().toString();
+                    thresholdValues =Integer.parseInt(egg);
+
+                }
+
+
+            }
+
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError databaseError) {
+
+            }
+        });
 
         dref.addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
                 status=dataSnapshot.child("Eggs").child("amount").getValue().toString();
-                txtRemaining.setText(status  + " g");
+              //  String  fruitss=dataSnapshot.child("Threshhold/Eggs/value").getValue().toString();
+               // Toast.makeText(EggsActivity.this, "Value"+fruitss, Toast.LENGTH_SHORT).show();
+                txtRemaining.setText(status);
                 thresholdComparison=parseInt(status);
                 // String value=thresholdValue.getText().toString();
 
                 // thresholddata= parseInt(value);
-                thresholddata = 4;
+             //   thresholddata = Integer.parseInt(fruit);
 
                 //Compare threshold value and generate alert
 
@@ -102,8 +128,9 @@ public class EggsActivity extends BaseClass {
                 txtUsed.setText(Integer.toString(used));
                 //  AddData();
 
-                if(thresholddata>thresholdComparison){
-                    onReceive();
+                if(thresholdValues>thresholdComparison){
+                   // onReceive();
+                    scheduleNotification(getNotification( "Smart Refrigerator Alert" ) , 5000 ) ;
                     saveNotificationfirebase();
                     //   Toast.makeText(IngredientDetailActivity.this, "Refill Box", Toast.LENGTH_SHORT).show();
 
@@ -135,32 +162,33 @@ public class EggsActivity extends BaseClass {
 
     //To Genrate a notification on threshold value
 
-    public void onReceive(){
+    //To Genrate a notification on threshold value
 
+    private void scheduleNotification(Notification notification , int delay) {
+        Intent notificationIntent = new Intent( this, MyNotificationPublisher.class ) ;
+        // Intent notificationIintent = new Intent(this, NotificationActivity.class);
+        notificationIntent.putExtra(MyNotificationPublisher. NOTIFICATION_ID , 1 ) ;
+        notificationIntent.putExtra(MyNotificationPublisher. NOTIFICATION , notification) ;
+        PendingIntent pendingIntent = PendingIntent. getBroadcast ( this, 0 , notificationIntent , PendingIntent. FLAG_UPDATE_CURRENT ) ;
+        long futureInMillis = SystemClock. elapsedRealtime () + delay ;
+        AlarmManager alarmManager = (AlarmManager) getSystemService(Context. ALARM_SERVICE ) ;
+        assert alarmManager != null;
+        alarmManager.set(AlarmManager. ELAPSED_REALTIME_WAKEUP , futureInMillis , pendingIntent) ;
+    }
+    private Notification getNotification (String content) {
+        NotificationCompat.Builder builder = new NotificationCompat.Builder( this, default_notification_channel_id ) ;
+        builder.setContentTitle( "Threshold alert" ) ;
+        Intent intent = new Intent(this, NotificationActivity.class);
+        PendingIntent pendingIntent = PendingIntent.getActivity(this, 0, intent, 0);
+        builder.setContentIntent(pendingIntent);
+        builder.setTicker("Eggs");
+        builder.setContentTitle("Eggs amount Below 5");
+        builder.setContentText("Please Refill Eggs Box");
+        builder.setSmallIcon(R.drawable. ic_launcher_foreground ) ;
+        builder.setAutoCancel( true ) ;
+        builder.setChannelId( NOTIFICATION_CHANNEL_ID ) ;
+        return builder.build() ;
 
-        Intent notificationIintent = new Intent(EggsActivity.this, NotificationActivity.class);
-        TaskStackBuilder taskStackBuilder= TaskStackBuilder.create(EggsActivity.this);
-        taskStackBuilder.addNextIntent(notificationIintent);
-        PendingIntent pendingIntent = taskStackBuilder.getPendingIntent(100, PendingIntent.FLAG_UPDATE_CURRENT);
-        NotificationCompat.Builder builder = new NotificationCompat.Builder(EggsActivity.this);
-        Uri alarmSound = RingtoneManager.getDefaultUri( RingtoneManager.TYPE_NOTIFICATION);
-        builder.setSound(alarmSound);
-
-        Notification notification =builder.setContentTitle("Threshold alert")
-                .setAutoCancel(true)
-                .setBadgeIconType(NotificationCompat.BADGE_ICON_SMALL)
-                .setTicker("Salt")
-                .setContentTitle("only 4 eggs remaining")
-                .setContentText("Please Refill Eggs Box")
-                .setAutoCancel(true)
-                // .setNumber(messageCount)
-                .setBadgeIconType(NotificationCompat.BADGE_ICON_SMALL)
-                .setSmallIcon(R.drawable.ic_notifications_black_24dp)
-
-                .setContentIntent(pendingIntent).build();
-
-        NotificationManager notificationManager = (NotificationManager) getSystemService(NOTIFICATION_SERVICE);
-        notificationManager.notify(uniqueID, notification);
     }
 
     //Save notification on firebase
@@ -174,4 +202,6 @@ public class EggsActivity extends BaseClass {
 
 
     }
+
+
 }

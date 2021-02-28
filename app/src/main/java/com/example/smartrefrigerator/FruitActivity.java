@@ -4,15 +4,18 @@ import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.app.NotificationCompat;
 
+import android.app.AlarmManager;
 import android.app.Notification;
 import android.app.NotificationManager;
 import android.app.PendingIntent;
 import android.app.TaskStackBuilder;
+import android.content.Context;
 import android.content.Intent;
 import android.media.RingtoneManager;
 import android.net.Uri;
 import android.os.Bundle;
 import android.os.CountDownTimer;
+import android.os.SystemClock;
 import android.view.MenuItem;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -38,9 +41,10 @@ public class FruitActivity extends BaseClass {
     String status;
     int used;
     int thresholdComparison;
-    double thresholddata;
-    NotificationCompat.Builder notification;
-    private static final int uniqueID = 45612;
+    double thresholdValues;
+    /////Only for Notification////
+    public static final String NOTIFICATION_CHANNEL_ID = "10001" ;
+    private final static String default_notification_channel_id = "default" ;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -65,8 +69,32 @@ public class FruitActivity extends BaseClass {
                 txtDays.setText(f.format(hour));
                 txtHours.setText(f.format(min));
                 txtMinutes.setText(f.format(sec));
-                dref.child("ExpiryNotify/Fruit/tittle").setValue( "No Food Expired" );
 
+//                dref.child("ExpiryTime/Fruit/hours").setValue(hour );
+//                dref.child("ExpiryNotify/Fruit/min").setValue( min );
+//                dref.child("ExpiryNotify/Fruit/sec").setValue( sec );
+
+                dref.child("ExpiryNotify/Fruit/tittle").setValue( "No Food Expired" );
+//                dref.addValueEventListener(new ValueEventListener() {
+//                    @Override
+//                    public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+//
+//                        String  hor=dataSnapshot.child("ExpiryTime/Fruit/hours").getValue().toString();
+//                        String  mins=dataSnapshot.child("ExpiryNotify/Fruit/min").getValue().toString();
+//                        String  secd=dataSnapshot.child("ExpiryNotify/Fruit/sec").getValue().toString();
+//                        txtDays.setText(f.format(hor));
+//                        txtHours.setText(f.format(mins));
+//                        txtMinutes.setText(f.format(secd));
+//
+//
+//                    }
+//
+//
+//                    @Override
+//                    public void onCancelled(@NonNull DatabaseError databaseError) {
+//
+//                    }
+//                });
 
             }
             // When the task is over it will print 00
@@ -85,6 +113,25 @@ public class FruitActivity extends BaseClass {
 
 
         //Firebase Data Base
+        dref.addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                if(dataSnapshot.exists()){
+                    //  String  status=dataSnapshot.child("ExpiryNotify/Fruit/tittle").getValue().toString();
+                    String  fruit=dataSnapshot.child("Threshhold/Fruits/value").getValue().toString();
+                    thresholdValues =Integer.parseInt(fruit);
+
+                }
+
+
+            }
+
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError databaseError) {
+
+            }
+        });
 
         dref.addValueEventListener(new ValueEventListener() {
             @Override
@@ -95,7 +142,6 @@ public class FruitActivity extends BaseClass {
                // String value=thresholdValue.getText().toString();
 
                // thresholddata= parseInt(value);
-                thresholddata = 500;
 
                 //Compare threshold value and generate alert
 
@@ -103,8 +149,9 @@ public class FruitActivity extends BaseClass {
                 txtUsed.setText(Integer.toString(used) + " g");
                 //  AddData();
 
-                if(thresholddata>thresholdComparison){
-                    onReceive();
+                if(thresholdValues>thresholdComparison){
+                  //  onReceive();
+                    scheduleNotification(getNotification( "Smart Refrigerator Alert" ) , 5000 ) ;
                     saveNotificationfirebase();
                     //   Toast.makeText(IngredientDetailActivity.this, "Refill Box", Toast.LENGTH_SHORT).show();
 
@@ -133,33 +180,32 @@ public class FruitActivity extends BaseClass {
     }
 
     //To Genrate a notification on threshold value
+    //To Genrate a notification on threshold value
 
-    public void onReceive(){
-
-
-        Intent notificationIintent = new Intent(FruitActivity.this, NotificationActivity.class);
-        TaskStackBuilder taskStackBuilder= TaskStackBuilder.create(FruitActivity.this);
-        taskStackBuilder.addNextIntent(notificationIintent);
-        PendingIntent pendingIntent = taskStackBuilder.getPendingIntent(100, PendingIntent.FLAG_UPDATE_CURRENT);
-        NotificationCompat.Builder builder = new NotificationCompat.Builder(FruitActivity.this);
-        Uri alarmSound = RingtoneManager.getDefaultUri( RingtoneManager.TYPE_NOTIFICATION);
-        builder.setSound(alarmSound);
-
-        Notification notification =builder.setContentTitle("Threshold alert")
-                .setAutoCancel(true)
-                .setBadgeIconType(NotificationCompat.BADGE_ICON_SMALL)
-                .setTicker("Salt")
-                .setContentTitle("Amount Below 500g")
-                .setContentText("Please Refill Fruit Box")
-                .setAutoCancel(true)
-                // .setNumber(messageCount)
-                .setBadgeIconType(NotificationCompat.BADGE_ICON_SMALL)
-                .setSmallIcon(R.drawable.ic_notifications_black_24dp)
-
-                .setContentIntent(pendingIntent).build();
-
-        NotificationManager notificationManager = (NotificationManager) getSystemService(NOTIFICATION_SERVICE);
-        notificationManager.notify(uniqueID, notification);
+    private void scheduleNotification(Notification notification , int delay) {
+        Intent notificationIntent = new Intent( this, MyNotificationPublisher.class ) ;
+        // Intent notificationIintent = new Intent(this, NotificationActivity.class);
+        notificationIntent.putExtra(MyNotificationPublisher. NOTIFICATION_ID , 1 ) ;
+        notificationIntent.putExtra(MyNotificationPublisher. NOTIFICATION , notification) ;
+        PendingIntent pendingIntent = PendingIntent. getBroadcast ( this, 0 , notificationIntent , PendingIntent. FLAG_UPDATE_CURRENT ) ;
+        long futureInMillis = SystemClock. elapsedRealtime () + delay ;
+        AlarmManager alarmManager = (AlarmManager) getSystemService(Context. ALARM_SERVICE ) ;
+        assert alarmManager != null;
+        alarmManager.set(AlarmManager. ELAPSED_REALTIME_WAKEUP , futureInMillis , pendingIntent) ;
+    }
+    private Notification getNotification (String content) {
+        NotificationCompat.Builder builder = new NotificationCompat.Builder( this, default_notification_channel_id ) ;
+        builder.setContentTitle( "Threshold alert" ) ;
+        Intent intent = new Intent(this, NotificationActivity.class);
+        PendingIntent pendingIntent = PendingIntent.getActivity(this, 0, intent, 0);
+        builder.setContentIntent(pendingIntent);
+        builder.setTicker("Fruits");
+        builder.setContentTitle("Fruit Below 500g");
+        builder.setContentText("Please Refill Vegetable Box");
+        builder.setSmallIcon(R.drawable. ic_launcher_foreground ) ;
+        builder.setAutoCancel( true ) ;
+        builder.setChannelId( NOTIFICATION_CHANNEL_ID ) ;
+        return builder.build() ;
     }
 
     //Save notification on firebase

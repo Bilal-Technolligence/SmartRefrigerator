@@ -10,7 +10,6 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.SmartRefrigerator">
         <activity android:name=".UpdateDiet"></activity>
-        <activity android:name=".senddiet"></activity>
         <activity android:name=".NotificationActivity" />
         <activity android:name=".EggsActivity" />
         <activity android:name=".VegetableActivity" />
@@ -19,9 +18,7 @@
             android:label="@string/title_activity_settings" />
         <activity
             android:name=".DietActivity"
-            android:theme="@style/Theme.AppCompat.NoActionBar">
-
-        </activity>
+            android:theme="@style/Theme.AppCompat.NoActionBar" />
         <activity
             android:name=".FruitActivity"
             android:theme="@style/Theme.AppCompat.NoActionBar" />

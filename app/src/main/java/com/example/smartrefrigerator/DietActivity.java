@@ -29,10 +29,10 @@ public class DietActivity extends BaseClass {
     DatabaseReference databaseReference = firebaseDatabase.getReference();
     Button update;
 
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+       // setContentView(R.layout.activity_diet);
         d1b = findViewById(R.id.day1B);
         d1l = findViewById(R.id.day1L);
         d1d = findViewById(R.id.day1D);
@@ -166,9 +166,6 @@ public class DietActivity extends BaseClass {
 
             }
         });
-
-
-        // setContentView(R.layout.activity_diet);
     }
 
     @Override
@@ -180,4 +177,14 @@ public class DietActivity extends BaseClass {
     int getNavigationMenuItemId() {
         return R.id.nav_diet;
     }
+
+//    @Override
+//    int getContentViewId() {
+//        return R.layout.activity_diet;
+//    }
+//
+//    @Override
+//    int getNavigationMenuItemId() {
+//        return R.id.nav_diet;
+//    }
 }

@@ -42,9 +42,8 @@ public class VegetableActivity extends BaseClass {
     String status;
     int used;
     int thresholdComparison;
-    double thresholddata;
-    SharedPreferences myPrefs;
-    SharedServices sharedPref;
+    double thresholdValues;
+
 
     NotificationCompat.Builder notification;
    // private static final int uniqueID = 45612;
@@ -56,9 +55,9 @@ public class VegetableActivity extends BaseClass {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
        // setContentView(R.layout.activity_vegetable);
-        txtThreshold =(TextView)findViewById(R.id.txttesting);
-        sharedPref = new SharedServices(VegetableActivity.this);
-        myPrefs = getApplicationContext().getSharedPreferences("MyPref", MODE_PRIVATE);
+      //  txtThreshold =(TextView)findViewById(R.id.txttesting);
+       // sharedPref = new SharedServices(VegetableActivity.this);
+      //  myPrefs = getApplicationContext().getSharedPreferences("MyPref", MODE_PRIVATE);
        // myPrefs = getApplicationContext().getSharedPreferences("MyPref", MODE_PRIVATE);
        // loadedProgress1 = sharedPref.getInt("Key_PROGRESS_1");
 
@@ -70,7 +69,6 @@ public class VegetableActivity extends BaseClass {
         txtDays = (TextView) findViewById(R.id.tv_days);
         txtHours = (TextView) findViewById(R.id.tv_hour);
         txtMinutes = (TextView) findViewById(R.id.tv_minute);
-        sharedPref = new SharedServices(VegetableActivity.this);
         //Timer CountDown
         new CountDownTimer(40000, 1000) {
             public void onTick(long millisUntilFinished) {
@@ -102,11 +100,30 @@ public class VegetableActivity extends BaseClass {
 
 
         //Firebase Data Base
+        dref.addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                if(dataSnapshot.exists()){
+                    //  String  status=dataSnapshot.child("ExpiryNotify/Fruit/tittle").getValue().toString();
+                    String  vage=dataSnapshot.child("Threshhold/Vagetables/value").getValue().toString();
+                    thresholdValues =Integer.parseInt(vage);
+
+                }
+
+
+            }
+
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError databaseError) {
+
+            }
+        });
 
         dref.addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
-                status=dataSnapshot.child("Vegetables").child("amount").getValue().toString();
+                status=dataSnapshot.child("Vagetables").child("amount").getValue().toString();
                 txtRemaining.setText(status  + " g");
                 thresholdComparison=parseInt(status);
                 // String value=thresholdValue.getText().toString();
@@ -122,7 +139,7 @@ public class VegetableActivity extends BaseClass {
                 txtUsed.setText(Integer.toString(used) + " g");
                 //  AddData();
 
-                if(thresholddata>thresholdComparison){
+                if(thresholdValues>thresholdComparison){
                   //  onReceive();
                     scheduleNotification(getNotification( "Smart Refrigerator Alert" ) , 5000 ) ;
                     saveNotificationfirebase();

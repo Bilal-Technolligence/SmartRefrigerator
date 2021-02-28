@@ -425,4 +425,5 @@
         app:layout_constraintRight_toRightOf="parent"
         android:layout_alignParentBottom="true"
         app:menu="@menu/navigation"/>
-</androidx.constraintlayout.widget.ConstraintLayout>
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
