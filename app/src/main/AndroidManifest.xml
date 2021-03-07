@@ -9,16 +9,31 @@
         android:roundIcon="@drawable/logo"
         android:supportsRtl="true"
         android:theme="@style/Theme.SmartRefrigerator">
-        <activity android:name=".Notification2">
+        <activity android:name=".ChangeValueActivity"
+            android:theme="@style/Theme.AppCompat.NoActionBar" >
 
         </activity>
-        <activity android:name=".UpdateDiet" />
-        <activity android:name=".NotificationActivity" />
-        <activity android:name=".EggsActivity" />
-        <activity android:name=".VegetableActivity" />
+        <activity android:name=".FeedbackActivity"
+            android:theme="@style/Theme.AppCompat.NoActionBar" />
+        <activity android:name=".ThresholdActivity" />
+        <activity android:name=".Notification2"
+            android:theme="@style/Theme.AppCompat.NoActionBar" />
+        <activity
+            android:name=".UpdateDiet"
+            android:theme="@style/Theme.AppCompat.NoActionBar" />
+        <activity
+            android:name=".GuideLine"
+            android:theme="@style/Theme.AppCompat.NoActionBar" />
+        <activity
+            android:name=".EggsActivity"
+            android:theme="@style/Theme.AppCompat.NoActionBar" />
+        <activity
+            android:name=".VegetableActivity"
+            android:theme="@style/Theme.AppCompat.NoActionBar" />
         <activity
             android:name=".SettingsActivity"
-            android:label="@string/title_activity_settings" />
+            android:label="@string/title_activity_settings"
+            android:theme="@style/Theme.AppCompat.NoActionBar" />
         <activity
             android:name=".DietActivity"
             android:theme="@style/Theme.AppCompat.NoActionBar" />
@@ -37,6 +52,8 @@
         <activity
             android:name=".MainActivity"
             android:theme="@style/Theme.AppCompat.NoActionBar" />
+
+        <receiver android:name=".MyNotificationPublisher" />
     </application>
 
 </manifest>

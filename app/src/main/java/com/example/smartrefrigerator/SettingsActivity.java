@@ -1,7 +1,12 @@
 package com.example.smartrefrigerator;
 
+import android.annotation.SuppressLint;
+import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.media.AudioManager;
+import android.media.RingtoneManager;
+import android.net.Uri;
 import android.os.Bundle;
 import android.view.MenuItem;
 import android.view.View;
@@ -15,6 +20,7 @@ import android.widget.Toast;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.cardview.widget.CardView;
 import androidx.preference.PreferenceFragmentCompat;
 
 import com.google.android.material.bottomnavigation.BottomNavigationView;
@@ -25,17 +31,14 @@ import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 
 public class SettingsActivity extends BaseClass {
-    private static final String TAG = "myLog";
- //   DiscreteSeekBar whistleSeekBar, volumeSeekBar, vibrationSeekBar;
-   // SharedPreferences myPrefs;
-   // SharedServices sharedPref;
-    String eggs,fruits,vegetables;
-    EditText txtVagetables, txtFruits, txtEggs;
-    Switch txtVibration,txtNoticationSound,txtOffNotification;
-  //  DatabaseReference dref= FirebaseDatabase.getInstance().getReference();
-    FirebaseDatabase firebaseDatabase = FirebaseDatabase.getInstance();
-    DatabaseReference dref = firebaseDatabase.getReference();
-    Button btnSave;
+
+    CardView btn;
+    DatabaseReference dref= FirebaseDatabase.getInstance().getReference();
+    Switch btnNotificationSound,btnVibration,btnOffNotifications;
+    String sound,vibration,offnotificationn;
+    TextView txtView;
+    AudioManager am;
+    CardView GuideLine,userFeedBack,RateUs;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -43,104 +46,163 @@ public class SettingsActivity extends BaseClass {
       //  setContentView(R.layout.settings_activity);
 
 
-        txtEggs = findViewById(R.id.txtEggsvalue);
-        txtFruits = findViewById(R.id.txtFruitsvalue);
-        txtVagetables = findViewById(R.id.txtvegvalue);
-        btnSave = findViewById(R.id.btnSaveValue);
-        ////Switch Button ////.
-        eggs= txtEggs.getText().toString();
-        fruits=txtFruits.getText().toString();
-        vegetables=txtVagetables.getText().toString();
-        dref.child("Threshhold/Eggs/value").setValue(eggs).toString();
-        dref.child("Threshhold/Fruits/value").setValue(fruits).toString();
-        dref.child("Threshhold/Vagetables/value").setValue(vegetables).toString();
-
-btnSave.setOnClickListener(new View.OnClickListener() {
-    @Override
-    public void onClick(View v) {
-        eggs= txtEggs.getText().toString();
-        fruits=txtFruits.getText().toString();
-        vegetables=txtVagetables.getText().toString();
-        dref.child("Threshhold/Eggs/value").setValue(eggs).toString();
-        dref.child("Threshhold/Fruits/value").setValue(fruits).toString();
-        dref.child("Threshhold/Vagetables/value").setValue(vegetables).toString();
-        Toast.makeText(SettingsActivity.this, "Values saved Successfully", Toast.LENGTH_SHORT).show();
-    }
-});
-
-
-       // dref.child("Notifications/Eggs/datetime").setValue(currentDateTimeString);
-
-
-//        txtNoticationSound =(Switch) findViewById(R.id.notisoundswitch);
-//        txtOffNotification =(Switch) findViewById(R.id.notishowswitch);
-//        txtVibration =(Switch) findViewById(R.id.vibswitch);
+        GuideLine =(CardView) findViewById(R.id.guidLine);
+        userFeedBack =(CardView) findViewById(R.id.btnFeedBack);
+        RateUs =(CardView) findViewById(R.id.btnRateUS);
+        txtView = findViewById(R.id.tvRingtone);
+        am = (AudioManager) getSystemService(Context.AUDIO_SERVICE);
+        btn = findViewById(R.id.btnSelRingtone);
+        btnNotificationSound=(Switch) findViewById(R.id.notisoundswitch);
+        btnVibration=(Switch) findViewById(R.id.vibswitch);
+        btnOffNotifications=(Switch) findViewById(R.id.notishowswitch);
 
         dref.addValueEventListener(new ValueEventListener() {
             @Override
-            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+            public void onDataChange(@NonNull DataSnapshot snapshot) {
+                if(snapshot.exists()){
+                    //  String  status=dataSnapshot.child("ExpiryNotify/Fruit/tittle").getValue().toString();
+                    sound=snapshot.child("Setting/SoundNotifiation").getValue().toString();
+                    vibration=snapshot.child("Setting/Vibration").getValue().toString();
+                    offnotificationn=snapshot.child("Setting/OffNotification").getValue().toString();
 
-                    String  egg=dataSnapshot.child("Threshhold/Eggs/value").getValue().toString();
-                   String  vagetable=dataSnapshot.child("Threshhold/Fruits/value").getValue().toString();
-                    String  fruit=dataSnapshot.child("Threshhold/Vagetables/value").getValue().toString();
-                    txtEggs.setText(String.valueOf(egg));
-                    txtFruits.setText(String.valueOf(fruit));
-                    txtVagetables.setText(String.valueOf(vagetable));
+                    if(sound.equals("ON")){
+                        btnNotificationSound.setChecked(true);
+                    }
 
-
+                    if(vibration.equals("ON")){
+                        btnVibration.setChecked(true);
+                    }
+                    if(offnotificationn.equals("ON")){
+                        btnOffNotifications.setChecked(true);
+                    }
+                }
             }
 
-
             @Override
-            public void onCancelled(@NonNull DatabaseError databaseError) {
+            public void onCancelled(@NonNull DatabaseError error) {
 
             }
         });
 
-
-//        txtVibration.setOnCheckedChangeListener( new CompoundButton.OnCheckedChangeListener() {
-//            @Override
-//            public void onCheckedChanged(CompoundButton compoundButton, boolean b) {
-//                if(txtVibration.isChecked()){
-//                   // sharedPref.setBool("Key_OnVibration", true);
-//                    Toast.makeText(SettingsActivity.this, "ON", Toast.LENGTH_SHORT).show();
-//                }
-//                else
-//                {
-//                    Toast.makeText(SettingsActivity.this, "OFF", Toast.LENGTH_SHORT).show();
-//
-//                }
-//            }
-//        } );
-//        txtNoticationSound.setOnCheckedChangeListener( new CompoundButton.OnCheckedChangeListener() {
-//            @Override
-//            public void onCheckedChanged(CompoundButton compoundButton, boolean b) {
-//                if(txtVibration.isChecked()){
-//                    Toast.makeText(SettingsActivity.this, "ON", Toast.LENGTH_SHORT).show();
-//                }
-//                else
-//                {
-//                    Toast.makeText(SettingsActivity.this, "OFF", Toast.LENGTH_SHORT).show();
-//
-//                }
-//            }
-//        } );
-//        txtOffNotification.setOnCheckedChangeListener( new CompoundButton.OnCheckedChangeListener() {
-//            @Override
-//            public void onCheckedChanged(CompoundButton compoundButton, boolean b) {
-//                if(txtVibration.isChecked()){
-//                    Toast.makeText(SettingsActivity.this, "ON", Toast.LENGTH_SHORT).show();
-//                }
-//                else
-//                {
-//                    Toast.makeText(SettingsActivity.this, "OFF", Toast.LENGTH_SHORT).show();
-//
-//                }
-//            }
-//        } );
-
-
+        GuideLine.setOnClickListener(new View.OnClickListener() {
+    @Override
+    public void onClick(View v) {
+       startActivity(new Intent(getApplicationContext(),GuideLine.class));
     }
+});
+        userFeedBack.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                startActivity(new Intent(getApplicationContext(),FeedbackActivity.class));
+            }
+        });
+        btnOffNotifications.setOnCheckedChangeListener( new CompoundButton.OnCheckedChangeListener() {
+            @Override
+            public void onCheckedChanged(CompoundButton compoundButton, boolean b) {
+                if(btnOffNotifications.isChecked()){
+                    dref.child( "Setting/OffNotification" ).setValue("ON").toString();
+
+
+
+                }
+                else
+                {
+                    dref.child( "Setting/OffNotification" ).setValue("OFF");
+
+                }
+            }
+        } );
+        btnVibration.setOnCheckedChangeListener( new CompoundButton.OnCheckedChangeListener() {
+            @Override
+            public void onCheckedChanged(CompoundButton compoundButton, boolean b) {
+                if(btnOffNotifications.isChecked()){
+                    dref.child( "Setting/Vibration" ).setValue("ON").toString();
+
+
+
+                }
+                else
+                {
+                    dref.child( "Setting/Vibration" ).setValue("OFF");
+
+                }
+            }
+        } );
+        btnNotificationSound.setOnCheckedChangeListener( new CompoundButton.OnCheckedChangeListener() {
+            @Override
+            public void onCheckedChanged(CompoundButton compoundButton, boolean b) {
+                if(btnOffNotifications.isChecked()){
+                    dref.child( "Setting/SoundNotifiation" ).setValue("ON").toString();
+                    am.setRingerMode(1);
+
+                }
+                else
+                {
+                    dref.child( "Setting/SoundNotifiation" ).setValue("OFF");
+                    am.setRingerMode(2);
+
+                }
+            }
+        } );
+
+        RateUs.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                try {
+                    dref.child("Applink").addValueEventListener(new ValueEventListener() {
+                        @Override
+                        public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                            if(dataSnapshot.exists()){
+                                final String url = dataSnapshot.getValue().toString();
+                                Intent viewIntent =
+                                        new Intent("android.intent.action.VIEW",
+                                                Uri.parse(url));
+                                try{startActivity(viewIntent);}
+                                catch (Exception e){}
+                            }
+                        }
+
+                        @Override
+                        public void onCancelled(@NonNull DatabaseError databaseError) {
+
+                        }
+                    });
+                }catch(Exception e) {
+                    Toast.makeText(getApplicationContext(),"Unable to Connect Try Again...",
+                            Toast.LENGTH_LONG).show();
+                    e.printStackTrace();
+                }
+            }
+        });
+
+
+        btn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                //Intent to select Ringtone.
+                final Uri currentTone=
+                        RingtoneManager.getActualDefaultRingtoneUri(SettingsActivity.this,
+                                RingtoneManager.TYPE_ALARM);
+                Intent intent = new Intent(RingtoneManager.ACTION_RINGTONE_PICKER);
+                intent.putExtra(RingtoneManager.EXTRA_RINGTONE_TYPE, RingtoneManager.TYPE_RINGTONE);
+                intent.putExtra(RingtoneManager.EXTRA_RINGTONE_TITLE, "Select Tone");
+                intent.putExtra(RingtoneManager.EXTRA_RINGTONE_EXISTING_URI, currentTone);
+                intent.putExtra(RingtoneManager.EXTRA_RINGTONE_SHOW_SILENT, false);
+                intent.putExtra(RingtoneManager.EXTRA_RINGTONE_SHOW_DEFAULT, true);
+                startActivityForResult(intent, 999);
+            }
+        });
+    }
+    @SuppressLint("SetTextI18n")
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+        if (requestCode == 999 && resultCode == RESULT_OK) {
+            Uri uri = data.getParcelableExtra(RingtoneManager.EXTRA_RINGTONE_PICKED_URI);
+            txtView.setText("From :" + uri.getPath());
+        }
+    }
+
 
 
     @Override

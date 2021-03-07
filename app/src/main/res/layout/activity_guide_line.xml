@@ -1,0 +1,163 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/white"
+    android:orientation="vertical"
+    tools:context=".GuideLine">
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_marginBottom="60dp">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:padding="10dp"
+            android:orientation="vertical">
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="center"
+                android:text="Smart Refrigerator"
+                android:textColor="@color/colorPrimaryDark"
+                android:textSize="30dp"
+                android:textStyle="bold" />
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="App Summary:"
+                android:textStyle="bold"
+                android:layout_marginBottom="6dp"
+                android:textColor="@color/colorBlue"
+                android:textSize="23dp" />
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="left"
+                android:text="Smart Refrigerator is an IOT based android application that update the user about the expiry and threshhold of fridge items."
+                android:textColor="@color/colorBlack"
+                android:layout_marginBottom="10dp"
+                android:textStyle="bold"
+                android:textSize="18dp" />
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Main Features:"
+                android:layout_marginBottom="6dp"
+                android:textColor="@color/colorBlue"
+                android:textSize="23dp" />
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="* Fruit Expiry and Threshold
+
+\n* Vegetables Expiry and Threshold
+\n* Eggs Expiry and Threshold
+\n* Monitor Weight
+\n* Weekly Diet Plan
+\n* Send alerts to user
+"
+                android:textColor="@color/colorBlack"
+                android:textSize="18dp" />
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="left"
+                android:text="\nFollow these guidelines to fully understand flow of app.
+"
+                android:layout_marginBottom="10dp"
+                android:textColor="@color/colorBlack"
+                android:textSize="18dp" />
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Home:"
+                android:layout_marginBottom="6dp"
+                android:textColor="@color/colorBlue"
+                android:textSize="23dp" />
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="left"
+                android:text="Show the Status of food expiry also user can open Fruit,Vegetable and eggs activity Manually to check the status"
+                android:layout_marginBottom="10dp"
+                android:textColor="@color/colorBlack"
+                android:textSize="18dp" />
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Bottom Menu"
+                android:layout_marginBottom="6dp"
+                android:textColor="@color/colorBlue"
+                android:textSize="23dp" />
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="left"
+                android:layout_marginBottom="10dp"
+                android:text="At the very bottom of the screen users can select options from the quick menu, after “home” use to go home activity “diet plan”use to view and add diet plan “notifications” use to check the alerts “threshhold” used to set the threshhold values of fruit vagetables and eggs,“setting” used to set ringtunes and how to use app"
+                android:textColor="@color/colorBlack"
+                android:textSize="18dp" />
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Diet Plan"
+                android:layout_marginBottom="6dp"
+                android:textColor="@color/colorBlue"
+                android:textSize="23dp" />
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="left"
+                android:layout_marginBottom="10dp"
+                android:text="User can view and update diet plan for whole week"
+                android:textColor="@color/colorBlack"
+                android:textSize="18dp" />
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Eggs Layout"
+                android:layout_marginBottom="6dp"
+                android:textColor="@color/colorBlue"
+                android:textSize="23dp" />
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="left"
+                android:layout_marginBottom="10dp"
+                android:text="User Can reStart the expiry timer by pressing the reset botton"
+                android:textColor="@color/colorBlack"
+                android:textSize="18dp" />
+
+        </LinearLayout>
+
+
+    </ScrollView>
+
+    <com.google.android.material.bottomnavigation.BottomNavigationView
+        android:id="@+id/navigationView"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_gravity="bottom"
+        android:layout_marginStart="0dp"
+        android:layout_marginEnd="0dp"
+        android:background="@color/colorWhite"
+        app:itemIconTint="@drawable/selectorcolor"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        android:layout_alignParentBottom="true"
+        app:menu="@menu/navigation"/>
+</RelativeLayout>

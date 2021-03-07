@@ -70,6 +70,13 @@ public class MainActivity extends BaseClass {
         eggs = (CardView) findViewById(R.id.egg);
      //int abc = sharedPref.getInt("Key_Eggs");
        //    detail.setText(String.valueOf(abc));
+        detail.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(getApplicationContext(), Notification2.class);
+                startActivity(intent);
+            }
+        });
         fruits.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {

@@ -1,6 +1,7 @@
 package com.example.smartrefrigerator;
 
 import android.app.Activity;
+import android.content.Intent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -33,19 +34,23 @@ public class NotificationAdapter extends RecyclerView.Adapter<NotificationAdapte
         holder.datetime.setText(notificationAttrs.get(position).getDatetime());
         holder.title.setText(notificationAttrs.get(position).getTitle());
 
-//        holder.itemView.setOnClickListener( new View.OnClickListener() {
-//            @Override
-//            public void onClick(View v) {
-//                final String latitude = addServiceAttrs.get(position).getLat();
-//                final String longitude = addServiceAttrs.get(position).getLon();
-//
-//                Intent intent = new Intent( context, DirectionOnMap.class );
-//                intent.putExtra("Latitude", latitude);
-//                intent.putExtra("Longitude", longitude);
-//                context.startActivity( intent );
-//
-//            }
-//        } );
+        holder.itemView.setOnClickListener( new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                final String title = notificationAttrs.get(position).getTitle();
+               // final String longitude = addServiceAttrs.get(position).getLon();
+                if (title.equals("Please Refill Fruit Box")) {
+                    Intent intent = new Intent(context, FruitActivity.class);
+                    context.startActivity(intent);
+                }else if(title.equals("Please Refill Egg Box")){
+                    Intent intent = new Intent(context, EggsActivity.class);
+                    context.startActivity(intent);
+                }else {
+                    Intent intent = new Intent(context, VegetableActivity.class);
+                    context.startActivity(intent);
+                }
+            }
+        } );
 
     }
 

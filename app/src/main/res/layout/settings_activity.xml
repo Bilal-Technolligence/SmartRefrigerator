@@ -3,7 +3,7 @@
     android:layout_height="match_parent"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-    android:background="#27C3D6"
+    android:background="@color/white"
     android:orientation="vertical">
 
         <LinearLayout
@@ -21,277 +21,242 @@
                 android:textAllCaps="true"
                 android:textColor="@color/colorPrimaryDark"
                 android:textSize="22dp"
-                android:textStyle="bold"
-
-                />
-
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:paddingTop="30dp"
-                android:text="Chnage Threshold Values"
-                android:textAllCaps="true"
-                android:textColor="#141414"
-                android:textSize="16sp"
                 android:textStyle="bold" />
-
-                <androidx.cardview.widget.CardView
-                    android:id="@+id/cardVegetables"
-                    android:layout_width="match_parent"
-                    android:layout_height="60dp"
-                    android:layout_marginTop="5dp"
-                    app:cardBackgroundColor="@color/white"
-                    app:cardCornerRadius="5dp"
-                    app:cardElevation="10dp">
-                    <LinearLayout
-                        android:layout_width="match_parent"
-                        android:layout_height="match_parent"
-                        android:padding="10dp"
-                        android:orientation="horizontal">
-                    <TextView
-                        android:layout_width="0dp"
-                        android:layout_height="match_parent"
-                        android:layout_weight="2.50"
-                        android:gravity="center|left"
-                        android:textColor="@color/colorPrimaryDark"
-                        android:text="Vegetables"
-                        android:textStyle="bold" />
-
-                    <EditText
-                        android:id="@+id/txtvegvalue"
-                        android:layout_width="0dp"
-                        android:text="2"
-                        android:gravity="center|right"
-                        android:textColor="@color/black"
-                        android:layout_height="match_parent"
-                        android:layout_weight="1"/>
-                        <TextView
-                            android:layout_width="0dp"
-                            android:text="g."
-                            android:backgroundTint="@color/white"
-                            android:gravity="fill_vertical"
-                            android:textColor="@color/black"
-                            android:layout_height="match_parent"
-                            android:layout_weight=".40">
-                    </TextView>
-                    </LinearLayout>
-                </androidx.cardview.widget.CardView>
-
-            <androidx.cardview.widget.CardView
-                android:id="@+id/cardfruits"
-                android:layout_width="match_parent"
-                android:layout_height="60dp"
-                android:layout_marginTop="5dp"
-                app:cardBackgroundColor="@color/white"
-                app:cardCornerRadius="5dp"
-                app:cardElevation="10dp">
-                <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:padding="10dp"
-                    android:orientation="horizontal">
-                    <TextView
-                        android:layout_width="0dp"
-                        android:layout_height="match_parent"
-                        android:layout_weight="2.50"
-                        android:gravity="center|left"
-                        android:textColor="@color/colorPrimaryDark"
-                        android:text="Fruits"
-                        android:textStyle="bold" />
-
-                    <EditText
-                        android:id="@+id/txtFruitsvalue"
-                        android:layout_width="0dp"
-                        android:text="1"
-                        android:gravity="center|right"
-                        android:textColor="@color/black"
-                        android:layout_height="match_parent"
-                        android:layout_weight="1"/>
-
-                    <TextView
-                        android:layout_width="0dp"
-                        android:text="g."
-                        android:backgroundTint="@color/white"
-                        android:gravity="fill_vertical"
-                        android:textColor="@color/black"
-                        android:layout_height="match_parent"
-                        android:layout_weight=".40"/>
-                </LinearLayout>
-            </androidx.cardview.widget.CardView>
-
-            <androidx.cardview.widget.CardView
-                android:id="@+id/cardEggs"
-                android:layout_width="match_parent"
-                android:layout_height="60dp"
-                android:layout_marginTop="5dp"
-                app:cardBackgroundColor="@color/white"
-                app:cardCornerRadius="5dp"
-                app:cardElevation="10dp">
-                <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:padding="10dp"
-                    android:orientation="horizontal">
-                    <TextView
-                        android:layout_width="0dp"
-                        android:layout_height="match_parent"
-                        android:layout_weight="2.50"
-                        android:gravity="center|left"
-                        android:textColor="@color/colorPrimaryDark"
-                        android:text="Eggs"
-                        android:textStyle="bold" />
-
-                    <EditText
-                        android:id="@+id/txtEggsvalue"
-                        android:layout_width="0dp"
-                        android:text="5"
-                        android:gravity="center|right"
-                        android:textColor="@color/black"
-                        android:layout_height="match_parent"
-                        android:layout_weight="1"/>
-                    <TextView
-                        android:layout_width="0dp"
-                        android:text=""
-                        android:backgroundTint="@color/white"
-                        android:gravity="fill_vertical"
-                        android:textColor="@color/black"
-                        android:layout_height="match_parent"
-                        android:layout_weight=".40"/>
-                </LinearLayout>
-            </androidx.cardview.widget.CardView>
-
-
-<!--            <TextView-->
-
-<!--                android:layout_width="wrap_content"-->
-<!--                android:layout_height="wrap_content"-->
-<!--                android:layout_marginTop="10dp"-->
-<!--                android:text="Preferences"-->
-<!--                android:textAllCaps="true"-->
-<!--                android:textColor="#141414"-->
-<!--                android:textSize="16sp"-->
-<!--                android:textStyle="bold" />-->
-
-<!--            <LinearLayout-->
-<!--                android:layout_width="match_parent"-->
-<!--                android:layout_height="45dp"-->
-<!--                android:padding="10dp"-->
-<!--                android:orientation="horizontal">-->
-
-<!--                <TextView-->
-<!--                    android:layout_width="0dp"-->
-<!--                    android:layout_height="match_parent"-->
-<!--                    android:layout_weight="3"-->
-<!--                    android:gravity="center|left"-->
-<!--                    android:textColor="@color/white"-->
-<!--                    android:text="VIBRATION"-->
-<!--                    android:textStyle="bold" />-->
-
-<!--                <Switch-->
-<!--                    android:id="@+id/vibswitch"-->
-<!--                    android:layout_width="0dp"-->
-<!--                    android:layout_height="match_parent"-->
-<!--                    android:layout_weight="1">-->
-
-<!--                </Switch>-->
-<!--            </LinearLayout>-->
-
-<!--            <LinearLayout-->
-<!--                android:layout_width="match_parent"-->
-<!--                android:layout_height="45dp"-->
-<!--                android:padding="10dp"-->
-<!--                android:orientation="horizontal">-->
-
-<!--                <TextView-->
-<!--                    android:layout_width="0dp"-->
-<!--                    android:layout_height="match_parent"-->
-<!--                    android:layout_weight="3"-->
-<!--                    android:textColor="@color/white"-->
-<!--                    android:gravity="center|left"-->
-<!--                    android:text="NOTIFICATION SOUND"-->
-<!--                    android:textStyle="bold" />-->
-
-<!--                <Switch-->
-<!--                    android:id="@+id/notisoundswitch"-->
-<!--                    android:layout_width="0dp"-->
-<!--                    android:layout_height="match_parent"-->
-<!--                    android:layout_weight="1">-->
-
-<!--                </Switch>-->
-<!--            </LinearLayout>-->
-
-
-<!--            <LinearLayout-->
-<!--                android:layout_width="match_parent"-->
-<!--                android:layout_height="45dp"-->
-<!--                android:padding="10dp"-->
-<!--                android:orientation="horizontal">-->
-
-<!--                <TextView-->
-<!--                    android:layout_width="0dp"-->
-<!--                    android:layout_height="match_parent"-->
-<!--                    android:layout_weight="3"-->
-<!--                    android:textColor="@color/white"-->
-<!--                    android:gravity="center|left"-->
-<!--                    android:text="NOTIFICATIONS"-->
-<!--                    android:textStyle="bold" />-->
-
-<!--                <Switch-->
-<!--                    android:id="@+id/notishowswitch"-->
-<!--                    android:layout_width="0dp"-->
-<!--                    android:layout_height="match_parent"-->
-<!--                    android:layout_weight="1">-->
-
-<!--                </Switch>-->
-<!--            </LinearLayout>-->
             <LinearLayout
-                android:id="@+id/linear_layout_1"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="30dp"
-                android:background="#27C3D6"
-                android:gravity="center_horizontal"
-                android:visibility="visible">
-
-                <Button
-                    android:id="@+id/btnSaveValue"
-                    android:layout_width="wrap_content"
+                android:layout_marginTop="10dp"
+                android:padding="10dp"
+                android:orientation="vertical">
+                <TextView
+                    android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:text="Save"
-                    android:textColor="@android:color/white"
-                    android:textSize="25dp"
-                    android:textStyle="normal" />
-            </LinearLayout>
-            <TextView
-                android:layout_width="wrap_content"
+                    android:gravity="start"
+                    android:text="Chnage Ringtone "
+                    android:background="@color/lightgray"
+                    android:textColor="@color/colorPrimaryDark"
+                    android:textStyle="bold"
+                    android:padding="15dp"
+                    android:textSize="18sp" />
+
+            <androidx.cardview.widget.CardView
+                android:id="@+id/btnSelRingtone"
+                android:layout_width="match_parent"
+                android:layout_height="50dp"
+                android:layout_marginTop="5dp"
+                app:cardBackgroundColor="@color/white"
+                app:cardCornerRadius="5dp"
+                app:cardElevation="10dp">
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:padding="10dp"
+                    android:orientation="horizontal">
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="match_parent"
+                        android:gravity="fill_vertical"
+                        android:layout_centerInParent="true"
+                        android:textColor="@color/black"
+                        android:textStyle="bold"
+                        android:layout_weight="2"
+                        android:text="Select Ringtone"/>
+                    <TextView
+                        android:id="@+id/tvRingtone"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_centerInParent="true"
+                        android:textColor="@color/black"
+                        android:layout_weight="2"
+                        android:textStyle="bold|italic"
+                        android:text="Ringtone Path"/>
+                </LinearLayout>
+            </androidx.cardview.widget.CardView>
+        </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="20dp"
-                android:text="Community"
-                android:textAllCaps="true"
-                android:textColor="#141414"
-                android:textSize="16sp"
-                android:textStyle="bold" />
+                android:padding="10dp"
+                android:orientation="vertical">
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="start"
+                android:text="Preferences "
+                android:background="@color/lightgray"
+                android:textColor="@color/colorPrimaryDark"
+                android:textStyle="bold"
+                android:padding="15dp"
+                android:textSize="18sp" />
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="45dp"
+                android:padding="10dp"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_weight="3"
+                    android:gravity="center|left"
+                    android:textColor="@color/black"
+                    android:text="VIBRATION"
+                    android:textStyle="bold" />
+
+                <Switch
+                    android:id="@+id/vibswitch"
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_weight="1">
+
+                </Switch>
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="45dp"
+                android:padding="10dp"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_weight="3"
+                    android:textColor="@color/black"
+                    android:gravity="center|left"
+                    android:text="NOTIFICATION SOUND"
+                    android:textStyle="bold" />
+
+                <Switch
+                    android:id="@+id/notisoundswitch"
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_weight="1">
+
+                </Switch>
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="45dp"
+                android:padding="10dp"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_weight="3"
+                    android:textColor="@color/black"
+                    android:gravity="center|left"
+                    android:text="NOTIFICATIONS"
+                    android:textStyle="bold" />
+
+                <Switch
+                    android:id="@+id/notishowswitch"
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_weight="1">
+
+                </Switch>
+            </LinearLayout>
+        </LinearLayout>
         <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="70dp"
+            android:layout_height="wrap_content"
             android:padding="10dp"
             android:orientation="vertical">
             <TextView
                 android:layout_width="match_parent"
-                android:layout_height="45dp"
-                android:layout_weight="1"
-                android:gravity="center|left"
-                android:text="FEEDBACK"
-                android:textColor="@color/white"
-                android:textStyle="bold" />
-            <TextView
+                android:layout_height="wrap_content"
+                android:gravity="start"
+                android:text="Community "
+                android:background="@color/lightgray"
+                android:textColor="@color/colorPrimaryDark"
+                android:textStyle="bold"
+                android:padding="15dp"
+                android:textSize="18sp" />
+
+            <androidx.cardview.widget.CardView
+                android:id="@+id/guidLine"
                 android:layout_width="match_parent"
-                android:layout_height="45dp"
-                android:layout_weight="1"
-                android:gravity="center|left"
-                android:text="RATE US"
-                android:textColor="@color/white"
-                android:textStyle="bold" />
+                android:layout_height="wrap_content"
+                app:cardBackgroundColor="#ffffff"
+                app:cardCornerRadius="10dp"
+                app:cardElevation="50dp">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:orientation="horizontal"
+                    android:padding="15dp">
+
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:gravity="center|left"
+                        android:textStyle="bold"
+                        android:text="GUIDELINE"
+                        android:textColor="@color/colorBlack" />
+
+
+                </LinearLayout>
+
+            </androidx.cardview.widget.CardView>
+            <androidx.cardview.widget.CardView
+                android:id="@+id/btnFeedBack"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                app:cardBackgroundColor="#ffffff"
+                app:cardCornerRadius="10dp"
+                app:cardElevation="50dp">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:orientation="horizontal"
+                    android:padding="15dp">
+
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:gravity="center|left"
+                        android:textStyle="bold"
+                        android:text="FEEDBACK"
+                        android:textColor="@color/colorBlack" />
+
+
+                </LinearLayout>
+
+            </androidx.cardview.widget.CardView>
+            <androidx.cardview.widget.CardView
+                android:id="@+id/btnRateUS"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                app:cardBackgroundColor="#ffffff"
+                app:cardCornerRadius="10dp"
+                app:cardElevation="50dp">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:orientation="horizontal"
+                    android:padding="15dp">
+
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:gravity="center|left"
+                        android:textStyle="bold"
+                        android:text="RATE US"
+                        android:textColor="@color/colorBlack" />
+
+
+                </LinearLayout>
+
+            </androidx.cardview.widget.CardView>
+
         </LinearLayout>
 
 

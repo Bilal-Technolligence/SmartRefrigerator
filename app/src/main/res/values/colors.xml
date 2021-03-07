@@ -6,11 +6,17 @@
     <color name="teal_200">#FF03DAC5</color>
     <color name="teal_700">#FF018786</color>
     <color name="black">#FF000000</color>
+    <color name="colorBlack">#000000</color>
+
     <color name="colorPrimaryDark">#1F45FC</color>
+    <color name="colorBlue">#1F45FC</color>
+    <color name="lightgray">#C3C3C3</color>
+
     <color name="colorWhite">#FFFFFFFF</color>
     <color name="colorPrimary">#15AEC1</color>
     <color name="colorPrimaryD">#800a39</color>
     <color name="sky_blue_pressed">#245e61</color>
     <color name="orange">#DF8602</color>
+    <color name="red">#FF0000</color>
     <color name="white">#ffffff</color>
 </resources>

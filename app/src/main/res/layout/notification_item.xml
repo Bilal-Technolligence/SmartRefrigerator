@@ -4,6 +4,7 @@
     android:layout_height="wrap_content"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
+    android:background="@color/white"
     android:orientation="horizontal"
     android:gravity="center">
 
@@ -40,22 +41,22 @@
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
                     android:text="Fruit Notification"
+                    android:textColor="@color/black"
                     android:textStyle="bold"
-                    android:id="@+id/notification_title"
-                    />
+                    android:id="@+id/notification_title" />
                 <TextView
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
                     android:text="Notification Description"
-                    android:id="@+id/notification_description"
-                    />
+                    android:textColor="@color/black"
+                    android:id="@+id/notification_description" />
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="match_parent"
                     android:text="datetime"
                     android:textSize="10dp"
-                    android:id="@+id/notification_datetime"
-                    />
+                    android:textColor="@color/black"
+                    android:id="@+id/notification_datetime" />
             </LinearLayout>
         </LinearLayout>
     </androidx.cardview.widget.CardView>
