@@ -47,7 +47,7 @@ public class Notification2 extends BaseClass {
                             notificationAttr p = dataSnapshot1.getValue(notificationAttr.class);
                             notificationAttrs.add(p);
                         }
-                        recyclerView.setAdapter(new NotificationListAdapter(notificationAttrs, getApplicationContext()));
+                        recyclerView.setAdapter(new NotificationListAdapter(notificationAttrs, getApplicationContext() , Notification2.this));
                         progressDialog.dismiss();
                     } catch (Exception e) {
                     }
