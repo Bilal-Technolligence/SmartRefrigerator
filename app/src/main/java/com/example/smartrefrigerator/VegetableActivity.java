@@ -199,7 +199,7 @@ public class VegetableActivity extends BaseClass {
             }
         });
 
-        dref.addValueEventListener(new ValueEventListener() {
+        dref.addListenerForSingleValueEvent(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
                 status=dataSnapshot.child("Vagetables").child("amount").getValue().toString();

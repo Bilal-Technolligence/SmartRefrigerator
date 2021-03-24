@@ -1,6 +1,8 @@
 package com.example.smartrefrigerator;
 
 import android.content.Context;
+import android.content.Intent;
+import android.os.Build;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -8,6 +10,7 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
+import androidx.annotation.RequiresApi;
 import androidx.recyclerview.widget.RecyclerView;
 
 import java.util.ArrayList;
@@ -28,14 +31,23 @@ public class NotificationListAdapter extends RecyclerView.Adapter<NotificationLi
         return new ViewHolder(view);
     }
 
+    @RequiresApi(api = Build.VERSION_CODES.M)
     @Override
     public void onBindViewHolder(@NonNull ViewHolder holder, final int position) {
         holder.desc.setText(notificationAttrs.get(position).getDescription());
         holder.datetime.setText(notificationAttrs.get(position).getDatetime());
         holder.title.setText(notificationAttrs.get(position).getTitle());
 
-
+        holder.itemView.setOnContextClickListener(new View.OnContextClickListener() {
+            @Override
+            public boolean onContextClick(View v) {
+                Intent intent = new Intent(context,EggsActivity.class);
+                context.startActivity(intent);
+                return false;
+            }
+        });
     }
+
 
     @Override
     public int getItemCount() {

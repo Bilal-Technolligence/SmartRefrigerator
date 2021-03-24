@@ -7,6 +7,10 @@
         android:icon="@drawable/home"
         android:title="Home" />
     <item
+        android:id="@+id/nav_th"
+        android:icon="@drawable/thvalue"
+        android:title="Threshhold" />
+    <item
         android:id="@+id/nav_diet"
         android:icon="@drawable/dietplan"
         android:title="Diet Plan" />
@@ -14,11 +18,6 @@
         android:id="@+id/nav_notification"
         android:icon="@drawable/ic_baseline_notifications_24"
         android:title="Notifications" />
-
-    <item
-        android:id="@+id/nav_th"
-        android:icon="@drawable/thvalue"
-        android:title="Threshhold" />
     <item
         android:id="@+id/nav_setting"
         android:icon="@drawable/setting"

@@ -46,7 +46,7 @@ public class FeedbackActivity extends BaseClass {
 
     }
     public void confirmInput() {
-        if (!validateEmail() | !validateFullName() | !validateFeedback()) {
+        if (!validateEmail() | !validateFullName() | !validateFeedback() | !checkbox()) {
             return;
         }
         sendEmail();
@@ -116,6 +116,20 @@ public class FeedbackActivity extends BaseClass {
             return false;
         } else {
             feedbackField.setError(null);
+            // nameField.setErrorEnabled(false);
+            return true;
+        }
+    }
+
+    private boolean checkbox() {
+        //code to check if this checkbox is checked!
+        CheckBox checkBox = (CheckBox) findViewById(R.id.CheckBoxResponse);
+        if (!checkBox.isChecked()) {
+            checkBox.setError("Field can not be empty");
+            return false;
+        }
+        else {
+            checkBox.setError(null);
             // nameField.setErrorEnabled(false);
             return true;
         }

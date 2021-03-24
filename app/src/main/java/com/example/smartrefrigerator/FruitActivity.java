@@ -184,7 +184,7 @@ public class FruitActivity extends BaseClass {
         });
 
         //Firebase Data Base
-        dref.addValueEventListener(new ValueEventListener() {
+        dref.addListenerForSingleValueEvent(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
                 if(dataSnapshot.exists()){
