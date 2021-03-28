@@ -134,6 +134,12 @@ public class FeedbackActivity extends BaseClass {
             return true;
         }
     }
+    @Override
+    public void onBackPressed() {
+        Intent intent = new Intent(this, SettingsActivity.class);
+        startActivity(intent);
+        finish();
+    }
 
     @Override
     int getContentViewId() {

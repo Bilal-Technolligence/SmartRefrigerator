@@ -251,8 +251,15 @@ btnReset.setOnClickListener(new View.OnClickListener() {
 
 
     }
-
     @Override
+    public void onBackPressed() {
+        Intent intent = new Intent(this, MainActivity.class);
+        startActivity(intent);
+        finish();
+        }
+
+
+        @Override
     int getContentViewId() {
         return R.layout.activity_eggs;
     }

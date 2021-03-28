@@ -238,7 +238,12 @@ public class FruitActivity extends BaseClass {
         });
 
     }
-
+    @Override
+    public void onBackPressed() {
+        Intent intent = new Intent(this, MainActivity.class);
+        startActivity(intent);
+        finish();
+    }
 
     //To Genrate a notification on threshold value
     //To Genrate a notification on threshold value

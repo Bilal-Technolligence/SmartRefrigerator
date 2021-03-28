@@ -1,5 +1,6 @@
 package com.example.smartrefrigerator;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
 
@@ -20,7 +21,12 @@ public class GuideLine extends BaseClass {
 
 
     }
-
+    @Override
+    public void onBackPressed() {
+        Intent intent = new Intent(this, SettingsActivity.class);
+        startActivity(intent);
+        finish();
+    }
     @Override
     int getContentViewId() {
         return R.layout.activity_guide_line;
