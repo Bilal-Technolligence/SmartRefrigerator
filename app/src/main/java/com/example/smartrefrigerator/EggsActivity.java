@@ -187,7 +187,7 @@ btnReset.setOnClickListener(new View.OnClickListener() {
 });
 
         //Firebase Data Base
-        dref.addValueEventListener(new ValueEventListener() {
+        dref.addListenerForSingleValueEvent(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
                 if(dataSnapshot.exists()){
