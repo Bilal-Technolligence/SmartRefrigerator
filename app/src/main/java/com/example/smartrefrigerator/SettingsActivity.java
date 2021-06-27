@@ -33,46 +33,46 @@ import com.google.firebase.database.ValueEventListener;
 public class SettingsActivity extends BaseClass {
 
     CardView btn;
-    DatabaseReference dref= FirebaseDatabase.getInstance().getReference();
-    Switch btnNotificationSound,btnVibration,btnOffNotifications;
-    String sound,vibration,offnotificationn;
+    DatabaseReference dref = FirebaseDatabase.getInstance().getReference();
+    Switch btnNotificationSound, btnVibration, btnOffNotifications;
+    String sound, vibration, offnotificationn;
     TextView txtView;
     AudioManager am;
-    CardView GuideLine,userFeedBack,RateUs;
+    CardView GuideLine, userFeedBack, RateUs;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-      //  setContentView(R.layout.settings_activity);
+        //  setContentView(R.layout.settings_activity);
 
 
-        GuideLine =(CardView) findViewById(R.id.guidLine);
-        userFeedBack =(CardView) findViewById(R.id.btnFeedBack);
-        RateUs =(CardView) findViewById(R.id.btnRateUS);
+        GuideLine = (CardView) findViewById(R.id.guidLine);
+        userFeedBack = (CardView) findViewById(R.id.btnFeedBack);
+        RateUs = (CardView) findViewById(R.id.btnRateUS);
         txtView = findViewById(R.id.tvRingtone);
         am = (AudioManager) getSystemService(Context.AUDIO_SERVICE);
         btn = findViewById(R.id.btnSelRingtone);
-        btnNotificationSound=(Switch) findViewById(R.id.notisoundswitch);
-        btnVibration=(Switch) findViewById(R.id.vibswitch);
-        btnOffNotifications=(Switch) findViewById(R.id.notishowswitch);
+        btnNotificationSound = (Switch) findViewById(R.id.notisoundswitch);
+        btnVibration = (Switch) findViewById(R.id.vibswitch);
+        btnOffNotifications = (Switch) findViewById(R.id.notishowswitch);
 
         dref.addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {
-                if(snapshot.exists()){
+                if (snapshot.exists()) {
                     //  String  status=dataSnapshot.child("ExpiryNotify/Fruit/tittle").getValue().toString();
-                    sound=snapshot.child("Setting/SoundNotifiation").getValue().toString();
-                    vibration=snapshot.child("Setting/Vibration").getValue().toString();
-                    offnotificationn=snapshot.child("Setting/OffNotification").getValue().toString();
+                    sound = snapshot.child("Setting/SoundNotifiation").getValue().toString();
+                    vibration = snapshot.child("Setting/Vibration").getValue().toString();
+                    offnotificationn = snapshot.child("Setting/OffNotification").getValue().toString();
 
-                    if(sound.equals("ON")){
+                    if (sound.equals("ON")) {
                         btnNotificationSound.setChecked(true);
                     }
 
-                    if(vibration.equals("ON")){
+                    if (vibration.equals("ON")) {
                         btnVibration.setChecked(true);
                     }
-                    if(offnotificationn.equals("ON")){
+                    if (offnotificationn.equals("ON")) {
                         btnOffNotifications.setChecked(true);
                     }
                 }
@@ -85,65 +85,57 @@ public class SettingsActivity extends BaseClass {
         });
 
         GuideLine.setOnClickListener(new View.OnClickListener() {
-    @Override
-    public void onClick(View v) {
-       startActivity(new Intent(getApplicationContext(),GuideLine.class));
-    }
-});
+            @Override
+            public void onClick(View v) {
+                startActivity(new Intent(getApplicationContext(), GuideLine.class));
+            }
+        });
         userFeedBack.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                startActivity(new Intent(getApplicationContext(),FeedbackActivity.class));
+                startActivity(new Intent(getApplicationContext(), FeedbackActivity.class));
             }
         });
-        btnOffNotifications.setOnCheckedChangeListener( new CompoundButton.OnCheckedChangeListener() {
+        btnOffNotifications.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
             @Override
             public void onCheckedChanged(CompoundButton compoundButton, boolean b) {
-                if(btnOffNotifications.isChecked()){
-                    dref.child( "Setting/OffNotification" ).setValue("ON").toString();
+                if (btnOffNotifications.isChecked()) {
+                    dref.child("Setting/OffNotification").setValue("ON").toString();
 
 
-
-                }
-                else
-                {
-                    dref.child( "Setting/OffNotification" ).setValue("OFF");
+                } else {
+                    dref.child("Setting/OffNotification").setValue("OFF");
 
                 }
             }
-        } );
-        btnVibration.setOnCheckedChangeListener( new CompoundButton.OnCheckedChangeListener() {
+        });
+        btnVibration.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
             @Override
             public void onCheckedChanged(CompoundButton compoundButton, boolean b) {
-                if(btnOffNotifications.isChecked()){
-                    dref.child( "Setting/Vibration" ).setValue("ON").toString();
+                if (btnOffNotifications.isChecked()) {
+                    dref.child("Setting/Vibration").setValue("ON").toString();
 
 
-
-                }
-                else
-                {
-                    dref.child( "Setting/Vibration" ).setValue("OFF");
+                } else {
+                    dref.child("Setting/Vibration").setValue("OFF");
 
                 }
             }
-        } );
-        btnNotificationSound.setOnCheckedChangeListener( new CompoundButton.OnCheckedChangeListener() {
+        });
+        btnNotificationSound.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
             @Override
             public void onCheckedChanged(CompoundButton compoundButton, boolean b) {
-                if(btnOffNotifications.isChecked()){
-                    dref.child( "Setting/SoundNotifiation" ).setValue("ON").toString();
+                if (btnOffNotifications.isChecked()) {
+                    dref.child("Setting/SoundNotifiation").setValue("ON").toString();
                     am.setRingerMode(1);
 
-                }
-                else
-                {
-                    dref.child( "Setting/SoundNotifiation" ).setValue("OFF");
+                } else {
+                    dref.child("Setting/SoundNotifiation").setValue("OFF");
                     am.setRingerMode(2);
 
                 }
             }
-        } );
+        });
 
         RateUs.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -152,13 +144,15 @@ public class SettingsActivity extends BaseClass {
                     dref.child("Applink").addValueEventListener(new ValueEventListener() {
                         @Override
                         public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
-                            if(dataSnapshot.exists()){
+                            if (dataSnapshot.exists()) {
                                 final String url = dataSnapshot.getValue().toString();
                                 Intent viewIntent =
                                         new Intent("android.intent.action.VIEW",
                                                 Uri.parse(url));
-                                try{startActivity(viewIntent);}
-                                catch (Exception e){}
+                                try {
+                                    startActivity(viewIntent);
+                                } catch (Exception e) {
+                                }
                             }
                         }
 
@@ -167,8 +161,8 @@ public class SettingsActivity extends BaseClass {
 
                         }
                     });
-                }catch(Exception e) {
-                    Toast.makeText(getApplicationContext(),"Unable to Connect Try Again...",
+                } catch (Exception e) {
+                    Toast.makeText(getApplicationContext(), "Unable to Connect Try Again...",
                             Toast.LENGTH_LONG).show();
                     e.printStackTrace();
                 }
@@ -180,7 +174,7 @@ public class SettingsActivity extends BaseClass {
             @Override
             public void onClick(View view) {
                 //Intent to select Ringtone.
-                final Uri currentTone=
+                final Uri currentTone =
                         RingtoneManager.getActualDefaultRingtoneUri(SettingsActivity.this,
                                 RingtoneManager.TYPE_ALARM);
                 Intent intent = new Intent(RingtoneManager.ACTION_RINGTONE_PICKER);
@@ -193,6 +187,7 @@ public class SettingsActivity extends BaseClass {
             }
         });
     }
+
     @SuppressLint("SetTextI18n")
     @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
@@ -202,7 +197,6 @@ public class SettingsActivity extends BaseClass {
             txtView.setText("From :" + uri.getPath());
         }
     }
-
 
 
     @Override

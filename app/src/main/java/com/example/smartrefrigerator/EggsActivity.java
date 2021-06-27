@@ -47,9 +47,9 @@ import java.util.Date;
 import static java.lang.Integer.parseInt;
 
 public class EggsActivity extends BaseClass {
-    DatabaseReference dref= FirebaseDatabase.getInstance().getReference();
-    TextView txtRemaining, txtUsed ,txtExpirayStatus, thresholdValue,txtSeconds,txtMinutes,txtHours;
-    String status,notificationStatus;
+    DatabaseReference dref = FirebaseDatabase.getInstance().getReference();
+    TextView txtRemaining, txtUsed, txtExpirayStatus, thresholdValue, txtSeconds, txtMinutes, txtHours;
+    String status, notificationStatus;
     double statuss;
     int used;
     int thresholdComparison;
@@ -58,23 +58,23 @@ public class EggsActivity extends BaseClass {
     int s;
 
     /////Only for Notification////
-    public static final String NOTIFICATION_CHANNEL_ID = "10001" ;
-    private final static String default_notification_channel_id = "default" ;
+    public static final String NOTIFICATION_CHANNEL_ID = "10001";
+    private final static String default_notification_channel_id = "default";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-      //  setContentView(R.layout.activity_eggs);
+        //  setContentView(R.layout.activity_eggs);
 
         //
 
-        txtRemaining=(TextView) findViewById(R.id.txtremaining);
-        txtUsed=(TextView) findViewById(R.id.txtused);
-        LinearLayout EStatus=findViewById(R.id.linear_layout_1);
-        LinearLayout TimerLayout=findViewById(R.id.linear_layout_2);
+        txtRemaining = (TextView) findViewById(R.id.txtremaining);
+        txtUsed = (TextView) findViewById(R.id.txtused);
+        LinearLayout EStatus = findViewById(R.id.linear_layout_1);
+        LinearLayout TimerLayout = findViewById(R.id.linear_layout_2);
         btnReset = findViewById(R.id.txtReset);
         txtHours = (TextView) findViewById(R.id.txtHours);
-        txtMinutes  = (TextView) findViewById(R.id.txtMinute);
+        txtMinutes = (TextView) findViewById(R.id.txtMinute);
         txtSeconds = (TextView) findViewById(R.id.txtSec);
         txtHours.setText("00");
         txtMinutes.setText("00");
@@ -86,7 +86,7 @@ public class EggsActivity extends BaseClass {
             }
 
             public void onFinish() {
-                dref.child("ExpiryNotify/Eggs/tittle").setValue( "Eggs Expired" );
+                dref.child("ExpiryNotify/Eggs/tittle").setValue("Eggs Expired");
                 dref.child("ExpiryNotify/Eggs/description").setValue("Your Eggs expired please destroy it");
                 String currentDateTimeString = DateFormat.getDateTimeInstance().format(new Date());
                 dref.child("ExpiryNotify/Eggs/datetime").setValue(currentDateTimeString);
@@ -94,19 +94,19 @@ public class EggsActivity extends BaseClass {
                 txtMinutes.setText("00");
                 txtSeconds.setText("00");
                 txtExpirayStatus.setText("Your Eggs expired please destroy");
-                scheduleNotification(getNotification2( "Smart Refrigerator Alert" ) , 1000 ) ;
+                scheduleNotification(getNotification2("Smart Refrigerator Alert"), 1000);
             }
 
         }.start();
 
-        txtExpirayStatus =findViewById(R.id.txtExpiryStatus);
+        txtExpirayStatus = findViewById(R.id.txtExpiryStatus);
 
         dref.addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {
-                if(snapshot.exists()){
+                if (snapshot.exists()) {
                     //  String  status=dataSnapshot.child("ExpiryNotify/Fruit/tittle").getValue().toString();
-                    notificationStatus=snapshot.child("Setting/OffNotification").getValue().toString();
+                    notificationStatus = snapshot.child("Setting/OffNotification").getValue().toString();
 
                 }
             }
@@ -205,22 +205,22 @@ public class EggsActivity extends BaseClass {
 //        });
 //        //
 
-btnReset.setOnClickListener(new View.OnClickListener() {
-    @Override
-    public void onClick(View v) {
-        dref.child("ExpiryNotify/Eggs/tittle").setValue( "No Food Expired" );
+        btnReset.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                dref.child("ExpiryNotify/Eggs/tittle").setValue("No Food Expired");
 
-    }
-});
+            }
+        });
 
         //Firebase Data Base
         dref.addListenerForSingleValueEvent(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
-                if(dataSnapshot.exists()){
-                  //  String  status=dataSnapshot.child("ExpiryNotify/Fruit/tittle").getValue().toString();
-                    String  egg=dataSnapshot.child("Threshhold/Eggs/value").getValue().toString();
-                    thresholdValues =Integer.parseInt(egg);
+                if (dataSnapshot.exists()) {
+                    //  String  status=dataSnapshot.child("ExpiryNotify/Fruit/tittle").getValue().toString();
+                    String egg = dataSnapshot.child("Threshhold/Eggs/value").getValue().toString();
+                    thresholdValues = Integer.parseInt(egg);
 
                 }
 
@@ -237,41 +237,40 @@ btnReset.setOnClickListener(new View.OnClickListener() {
         dref.addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
-                statuss= Double.parseDouble(dataSnapshot.child("Eggs").child("amount").getValue().toString());
-               // status=dataSnapshot.child("Eggs").child("amount").getValue().toString();
-              //  String  fruitss=dataSnapshot.child("Threshhold/Eggs/value").getValue().toString();
-               // Toast.makeText(EggsActivity.this, "Value"+fruitss, Toast.LENGTH_SHORT).show();
-                int a =(int) Math.round(statuss);
-                thresholdComparison=a;
-               // Toast.makeText(EggsActivity.this, "Int Value...."+a, Toast.LENGTH_SHORT).show();
-                if(a>=3&&a<=12) {
-                    status= String.valueOf("1");
-                } else if (a>=13&&a<=20){
-                    status= String.valueOf("2");
-                }else if (a>20&&a<=29){
-                    status= String.valueOf("3");
-                }else if (a>=30&&a<=38){
-                    status= String.valueOf("4");
-                }else if (a>=39&&a<=46){
-                    status= String.valueOf("5");
-                }else if (a>46&&a<=55){
-                    status= String.valueOf("6");
+                statuss = Double.parseDouble(dataSnapshot.child("Eggs").child("amount").getValue().toString());
+                // status=dataSnapshot.child("Eggs").child("amount").getValue().toString();
+                //  String  fruitss=dataSnapshot.child("Threshhold/Eggs/value").getValue().toString();
+                // Toast.makeText(EggsActivity.this, "Value"+fruitss, Toast.LENGTH_SHORT).show();
+                int a = (int) Math.round(statuss);
+                thresholdComparison = a;
+                // Toast.makeText(EggsActivity.this, "Int Value...."+a, Toast.LENGTH_SHORT).show();
+                if (a >= 3 && a <= 12) {
+                    status = String.valueOf("1");
+                } else if (a >= 13 && a <= 20) {
+                    status = String.valueOf("2");
+                } else if (a > 20 && a <= 29) {
+                    status = String.valueOf("3");
+                } else if (a >= 30 && a <= 38) {
+                    status = String.valueOf("4");
+                } else if (a >= 39 && a <= 46) {
+                    status = String.valueOf("5");
+                } else if (a > 46 && a <= 55) {
+                    status = String.valueOf("6");
                 } else {
-                    status= String.valueOf(a);
+                    status = String.valueOf(a);
                 }
 
                 txtRemaining.setText(status);
 
-                used=6-parseInt(status);
+                used = 6 - parseInt(status);
                 txtUsed.setText(Integer.toString(used));
                 //  AddData();
-                if(thresholdValues>thresholdComparison){
-                    if(notificationStatus.equals("ON"))
-                    {
+                if (thresholdValues > thresholdComparison) {
+                    if (notificationStatus.equals("ON")) {
                         //  onReceive();
-                        scheduleNotification(getNotification( "Smart Refrigerator Alert" ) , 3000 ) ;
+                        scheduleNotification(getNotification("Smart Refrigerator Alert"), 1000);
                         saveNotificationfirebase();
-                    }else{
+                    } else {
                         saveNotificationfirebase();
                     }
 
@@ -291,15 +290,16 @@ btnReset.setOnClickListener(new View.OnClickListener() {
 
 
     }
+
     @Override
     public void onBackPressed() {
         Intent intent = new Intent(this, MainActivity.class);
         startActivity(intent);
         finish();
-        }
+    }
 
 
-        @Override
+    @Override
     int getContentViewId() {
         return R.layout.activity_eggs;
     }
@@ -313,54 +313,56 @@ btnReset.setOnClickListener(new View.OnClickListener() {
 
     //To Genrate a notification on threshold value
 
-    private void scheduleNotification(Notification notification , int delay) {
-        Intent notificationIntent = new Intent( this, MyNotificationPublisher.class ) ;
+    private void scheduleNotification(Notification notification, int delay) {
+        Intent notificationIntent = new Intent(this, MyNotificationPublisher.class);
         // Intent notificationIintent = new Intent(this, NotificationActivity.class);
-        notificationIntent.putExtra(MyNotificationPublisher. NOTIFICATION_ID , 1 ) ;
-        notificationIntent.putExtra(MyNotificationPublisher. NOTIFICATION , notification) ;
-        PendingIntent pendingIntent = PendingIntent. getBroadcast ( this, 0 , notificationIntent , PendingIntent. FLAG_UPDATE_CURRENT ) ;
-        long futureInMillis = SystemClock. elapsedRealtime () + delay ;
-        AlarmManager alarmManager = (AlarmManager) getSystemService(Context. ALARM_SERVICE ) ;
+        notificationIntent.putExtra(MyNotificationPublisher.NOTIFICATION_ID, 1);
+        notificationIntent.putExtra(MyNotificationPublisher.NOTIFICATION, notification);
+        PendingIntent pendingIntent = PendingIntent.getBroadcast(this, 0, notificationIntent, PendingIntent.FLAG_UPDATE_CURRENT);
+        long futureInMillis = SystemClock.elapsedRealtime() + delay;
+        AlarmManager alarmManager = (AlarmManager) getSystemService(Context.ALARM_SERVICE);
         assert alarmManager != null;
-        alarmManager.set(AlarmManager. ELAPSED_REALTIME_WAKEUP , futureInMillis , pendingIntent) ;
+        alarmManager.set(AlarmManager.ELAPSED_REALTIME_WAKEUP, futureInMillis, pendingIntent);
     }
-    private Notification getNotification (String content) {
-        NotificationCompat.Builder builder = new NotificationCompat.Builder( this, default_notification_channel_id ) ;
-        builder.setContentTitle( "Threshold alert" ) ;
+
+    private Notification getNotification(String content) {
+        NotificationCompat.Builder builder = new NotificationCompat.Builder(this, default_notification_channel_id);
+        builder.setContentTitle("Threshold alert");
         Intent intent = new Intent(this, Notification2.class);
         PendingIntent pendingIntent = PendingIntent.getActivity(this, 0, intent, 0);
         builder.setContentIntent(pendingIntent);
         builder.setTicker("Eggs");
         builder.setContentTitle("Eggs amount Below Th");
         builder.setContentText("Please Refill Eggs Box");
-        builder.setSmallIcon(R.drawable. ic_launcher_foreground ) ;
-        builder.setAutoCancel( true ) ;
-        builder.setChannelId( NOTIFICATION_CHANNEL_ID ) ;
-        return builder.build() ;
+        builder.setSmallIcon(R.drawable.ic_launcher_foreground);
+        builder.setAutoCancel(true);
+        builder.setChannelId(NOTIFICATION_CHANNEL_ID);
+        return builder.build();
 
     }
-    private Notification getNotification2 (String content) {
-        NotificationCompat.Builder builder = new NotificationCompat.Builder( this, default_notification_channel_id ) ;
-        builder.setContentTitle( "Egg Expired" ) ;
+
+    private Notification getNotification2(String content) {
+        NotificationCompat.Builder builder = new NotificationCompat.Builder(this, default_notification_channel_id);
+        builder.setContentTitle("Egg Expired");
         Intent intent = new Intent(this, Notification2.class);
         PendingIntent pendingIntent = PendingIntent.getActivity(this, 0, intent, 0);
         builder.setContentIntent(pendingIntent);
         builder.setTicker("Eggs");
         builder.setContentTitle("Eggs Expired");
         builder.setContentText("Please Destroy the Egg");
-        builder.setSmallIcon(R.drawable. ic_launcher_foreground ) ;
-        builder.setAutoCancel( true ) ;
-        builder.setChannelId( NOTIFICATION_CHANNEL_ID ) ;
-        return builder.build() ;
+        builder.setSmallIcon(R.drawable.ic_launcher_foreground);
+        builder.setAutoCancel(true);
+        builder.setChannelId(NOTIFICATION_CHANNEL_ID);
+        return builder.build();
 
     }
 
     //Save notification on firebase
 
-    public void saveNotificationfirebase(){
+    public void saveNotificationfirebase() {
 
-        dref.child("Notifications/Eggs/title").setValue( "Please Refill Egg Box" );
-        dref.child("Notifications/Eggs/description").setValue( "only 4 eggs remaning" );
+        dref.child("Notifications/Eggs/title").setValue("Please Refill Egg Box");
+        dref.child("Notifications/Eggs/description").setValue("only 4 eggs remaning");
         String currentDateTimeString = DateFormat.getDateTimeInstance().format(new Date());
         dref.child("Notifications/Eggs/datetime").setValue(currentDateTimeString);
 
