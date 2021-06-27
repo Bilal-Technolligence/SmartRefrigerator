@@ -260,7 +260,7 @@ public class VegetableActivity extends BaseClass {
                 } else if (a>=95&&a<=100){
                     status= String.valueOf("600");
                 }else {
-                    status= String.valueOf("600+");
+                    status= String.valueOf(a);
                 }
 
                 txtRemaining.setText(status  + " g");
@@ -282,7 +282,7 @@ public class VegetableActivity extends BaseClass {
                     if(notificationStatus.equals("ON"))
                     {
                         //  onReceive();
-                        scheduleNotification(getNotification( "Smart Refrigerator Alert" ) , 1000 ) ;
+                        scheduleNotification(getNotification( "Smart Refrigerator Alert" ) , 3000 ) ;
                         saveNotificationfirebase();
                     }else{
                         saveNotificationfirebase();
