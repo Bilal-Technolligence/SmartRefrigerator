@@ -105,7 +105,8 @@ public class EggsActivity extends BaseClass {
 
                             public void onTick(long millisUntilFinished) {
                                 txtExpirayStatus.setText("Eggs Expiry");
-                                EStatus.setBackgroundColor(Color.parseColor("#1F45FC"));                                btnReset.setVisibility(View.GONE);
+                                EStatus.setBackgroundColor(Color.parseColor("#1F45FC"));
+                                btnReset.setVisibility(View.GONE);
 
                                 // Used for formatting digit to be in 2 digits only
                                 NumberFormat f = new DecimalFormat("00");
@@ -216,7 +217,7 @@ btnReset.setOnClickListener(new View.OnClickListener() {
               //  String  fruitss=dataSnapshot.child("Threshhold/Eggs/value").getValue().toString();
                // Toast.makeText(EggsActivity.this, "Value"+fruitss, Toast.LENGTH_SHORT).show();
                 int a =(int) Math.round(statuss);
-                Toast.makeText(EggsActivity.this, "Int Value...."+a, Toast.LENGTH_SHORT).show();
+               // Toast.makeText(EggsActivity.this, "Int Value...."+a, Toast.LENGTH_SHORT).show();
                 if(a>=6&&a<12) {
                     status= String.valueOf("1");
                 } else if (a>13&&a<20){

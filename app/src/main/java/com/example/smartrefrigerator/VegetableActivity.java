@@ -49,6 +49,7 @@ public class VegetableActivity extends BaseClass {
     TextView txtRemaining, txtUsed ,txtExpirayStatus, thresholdValue,txtSeconds,txtMinutes,txtHours;
     String status,notificationStatus;
     int used;
+    double statuss;
     int thresholdComparison;
     double thresholdValues;
     Button btnReset;
@@ -199,12 +200,47 @@ public class VegetableActivity extends BaseClass {
             }
         });
 
-        dref.addListenerForSingleValueEvent(new ValueEventListener() {
+        dref.addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
-                status=dataSnapshot.child("Vagetables").child("amount").getValue().toString();
+//                status=dataSnapshot.child("Vegetables").child("amount").getValue().toString();
+//                //txtRemaining.setText(status  + " g");
+//                thresholdComparison=parseInt(status);
+                statuss= Double.parseDouble(dataSnapshot.child("Vegetables").child("amount").getValue().toString());
+                int a =(int) Math.round(statuss);
+                // Toast.makeText(EggsActivity.this, "Int Value...."+a, Toast.LENGTH_SHORT).show();
+                if(a>=20&&a<=25) {
+                    status= String.valueOf("0");
+                } else if (a>=26&&a<=30){
+                    status= String.valueOf("50");
+                }else if (a>=31&&a<36){
+                    status= String.valueOf("100");
+                }else if (a>=37&&a<=43){
+                    status= String.valueOf("150");
+                }else if (a>=44&&a<=50){
+                    status= String.valueOf("200");
+                }else if (a>=51&&a<=55){
+                    status= String.valueOf("250");
+                }else if (a>=56&&a<=60){
+                    status= String.valueOf("300");
+                } else if (a>=61&&a<=67){
+                    status= String.valueOf("350");
+                } else if (a>=68&&a<=75){
+                    status= String.valueOf("400");
+                } else if (a>=76&&a<=82){
+                    status= String.valueOf("450");
+                } else if (a>=83&&a<=90){
+                    status= String.valueOf("500");
+                } else if (a>=91&&a<=94){
+                    status= String.valueOf("550");
+                } else if (a>=95&&a<=100){
+                    status= String.valueOf("600");
+                }else {
+                    status= String.valueOf(a);
+                }
+
                 txtRemaining.setText(status  + " g");
-                thresholdComparison=parseInt(status);
+
                 // String value=thresholdValue.getText().toString();
                 //First time when App Installed\\\
 
