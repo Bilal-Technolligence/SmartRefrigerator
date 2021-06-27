@@ -22,6 +22,7 @@ import android.media.RingtoneManager;
 import android.net.Uri;
 import android.os.Bundle;
 import android.os.CountDownTimer;
+import android.os.Handler;
 import android.os.SystemClock;
 import android.view.MenuItem;
 import android.view.View;
@@ -54,6 +55,7 @@ public class EggsActivity extends BaseClass {
     int thresholdComparison;
     double thresholdValues;
     Button btnReset;
+    int s;
 
     /////Only for Notification////
     public static final String NOTIFICATION_CHANNEL_ID = "10001" ;
@@ -74,6 +76,29 @@ public class EggsActivity extends BaseClass {
         txtHours = (TextView) findViewById(R.id.txtHours);
         txtMinutes  = (TextView) findViewById(R.id.txtMinute);
         txtSeconds = (TextView) findViewById(R.id.txtSec);
+        txtHours.setText("00");
+        txtMinutes.setText("00");
+        new CountDownTimer(60000, 1000) {
+
+            public void onTick(long millisUntilFinished) {
+                txtSeconds.setText(String.valueOf(millisUntilFinished / 1000));
+                //here you can have your logic to set text to edittext
+            }
+
+            public void onFinish() {
+                dref.child("ExpiryNotify/Eggs/tittle").setValue( "Eggs Expired" );
+                dref.child("ExpiryNotify/Eggs/description").setValue("Your Eggs expired please destroy it");
+                String currentDateTimeString = DateFormat.getDateTimeInstance().format(new Date());
+                dref.child("ExpiryNotify/Eggs/datetime").setValue(currentDateTimeString);
+                txtHours.setText("00");
+                txtMinutes.setText("00");
+                txtSeconds.setText("00");
+                txtExpirayStatus.setText("Your Eggs expired please destroy");
+                scheduleNotification(getNotification2( "Smart Refrigerator Alert" ) , 1000 ) ;
+            }
+
+        }.start();
+
         txtExpirayStatus =findViewById(R.id.txtExpiryStatus);
 
         dref.addValueEventListener(new ValueEventListener() {
@@ -92,93 +117,93 @@ public class EggsActivity extends BaseClass {
             }
         });
 
-        dref.addValueEventListener(new ValueEventListener() {
-            @SuppressLint("ResourceAsColor")
-            @Override
-            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
-                if(dataSnapshot.exists()){
-                    String  Threshold=dataSnapshot.child("ExpiryNotify/Eggs/tittle").getValue().toString();
-                    if(Threshold.equals("No Food Expired")){
-
-                        //Timer CountDown
-                        new CountDownTimer(40000, 1000) {
-
-                            public void onTick(long millisUntilFinished) {
-                                txtExpirayStatus.setText("Eggs Expiry");
-                                EStatus.setBackgroundColor(Color.parseColor("#1F45FC"));
-                                btnReset.setVisibility(View.GONE);
-
-                                // Used for formatting digit to be in 2 digits only
-                                NumberFormat f = new DecimalFormat("00");
-                                long hour = (millisUntilFinished / 3600000) % 24;
-                                long min = (millisUntilFinished / 60000) % 60;
-                                long sec = (millisUntilFinished / 1000) % 60;
-                                txtHours.setText(f.format(hour));
-                                txtMinutes.setText(f.format(min));
-                                txtSeconds.setText(f.format(sec));
-                                dref.child("ExpiryNotify/Eggs/tittle").setValue( "No Food Expired" );
-                                int ab= parseInt( txtSeconds.getText().toString());
-
-                                if(ab<30)
-                                {
-                                   // EStatus.setBackgroundColor(Color.parseColor("#FF0000"));
-                                     final int from = ContextCompat.getColor(getApplicationContext(), R.color.colorPrimaryD);
-                                    final int to   = ContextCompat.getColor(getApplicationContext(), R.color.red);
-
-                                    ValueAnimator anim = new ValueAnimator();
-                                    anim.setIntValues(from, to);
-                                    anim.setEvaluator(new ArgbEvaluator());
-                                    anim.addUpdateListener(new ValueAnimator.AnimatorUpdateListener() {
-                                        @Override
-                                        public void onAnimationUpdate(ValueAnimator valueAnimator) {
-                                            EStatus.setBackgroundColor((Integer)valueAnimator.getAnimatedValue());
-                                        }
-                                    });
-
-                                    anim.setDuration(1000);
-                                    anim.start();
-                                }
-
-
-                            }
-
-                            // When the
-                            // task is over it will print 00
-                            @SuppressLint("ResourceAsColor")
-                            public void onFinish() {
-                                dref.child("ExpiryNotify/Eggs/tittle").setValue( "Eggs Expired" );
-                                dref.child("ExpiryNotify/Eggs/description").setValue( "Your Eggs expired please destroy it" );
-                                String currentDateTimeString = DateFormat.getDateTimeInstance().format(new Date());
-                                dref.child("ExpiryNotify/Eggs/datetime").setValue(currentDateTimeString);
-                                txtHours.setText("00");
-                                txtMinutes.setText("00");
-                                txtSeconds.setText("00");
-                                txtExpirayStatus.setText("Your Eggs expired please destroy");
-
-                            }
-                        }.start();
-
-                    } else{
-                        txtHours.setText("00");
-                        txtMinutes.setText("00");
-                        txtSeconds.setText("00");
-                        txtExpirayStatus.setText("Your Eggs expired please destroy");
-                        EStatus.setBackgroundColor(Color.parseColor("#DF8602"));
-                        btnReset.setVisibility(View.VISIBLE);
-                    }
-
-                }
-
-
-            }
-
-
-            @Override
-            public void onCancelled(@NonNull DatabaseError databaseError) {
-
-            }
-        });
-        //
+//        dref.addValueEventListener(new ValueEventListener() {
+//            @SuppressLint("ResourceAsColor")
+//            @Override
+//            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+//                if(dataSnapshot.exists()){
+//                    String  Threshold=dataSnapshot.child("ExpiryNotify/Eggs/tittle").getValue().toString();
+//                    if(Threshold.equals("No Food Expired")){
+//
+//                        //Timer CountDown
+//                        new CountDownTimer(40000, 1000) {
+//
+//                            public void onTick(long millisUntilFinished) {
+//                                txtExpirayStatus.setText("Eggs Expiry");
+//                                EStatus.setBackgroundColor(Color.parseColor("#1F45FC"));
+//                                btnReset.setVisibility(View.GONE);
+//
+//                                // Used for formatting digit to be in 2 digits only
+//                                NumberFormat f = new DecimalFormat("00");
+//                                long hour = (millisUntilFinished / 3600000) % 24;
+//                                long min = (millisUntilFinished / 60000) % 60;
+//                                long sec = (millisUntilFinished / 1000) % 60;
+//                                txtHours.setText(f.format(hour));
+//                                txtMinutes.setText(f.format(min));
+//                                txtSeconds.setText(f.format(sec));
+//                                dref.child("ExpiryNotify/Eggs/tittle").setValue( "No Food Expired" );
+//                                int ab= parseInt( txtSeconds.getText().toString());
+//
+//                                if(ab<30)
+//                                {
+//                                   // EStatus.setBackgroundColor(Color.parseColor("#FF0000"));
+//                                     final int from = ContextCompat.getColor(getApplicationContext(), R.color.colorPrimaryD);
+//                                    final int to   = ContextCompat.getColor(getApplicationContext(), R.color.red);
+//
+//                                    ValueAnimator anim = new ValueAnimator();
+//                                    anim.setIntValues(from, to);
+//                                    anim.setEvaluator(new ArgbEvaluator());
+//                                    anim.addUpdateListener(new ValueAnimator.AnimatorUpdateListener() {
+//                                        @Override
+//                                        public void onAnimationUpdate(ValueAnimator valueAnimator) {
+//                                            EStatus.setBackgroundColor((Integer)valueAnimator.getAnimatedValue());
+//                                        }
+//                                    });
+//
+//                                    anim.setDuration(1000);
+//                                    anim.start();
+//                                }
+//
+//
+//                            }
+//
+//                            // When the
+//                            // task is over it will print 00
+//                            @SuppressLint("ResourceAsColor")
+//                            public void onFinish() {
+//                                dref.child("ExpiryNotify/Eggs/tittle").setValue( "Eggs Expired" );
+//                                dref.child("ExpiryNotify/Eggs/description").setValue( "Your Eggs expired please destroy it" );
+//                                String currentDateTimeString = DateFormat.getDateTimeInstance().format(new Date());
+//                                dref.child("ExpiryNotify/Eggs/datetime").setValue(currentDateTimeString);
+//                                txtHours.setText("00");
+//                                txtMinutes.setText("00");
+//                                txtSeconds.setText("00");
+//                                txtExpirayStatus.setText("Your Eggs expired please destroy");
+//
+//                            }
+//                        }.start();
+//
+//                    } else{
+//                        txtHours.setText("00");
+//                        txtMinutes.setText("00");
+//                        txtSeconds.setText("00");
+//                        txtExpirayStatus.setText("Your Eggs expired please destroy");
+//                        EStatus.setBackgroundColor(Color.parseColor("#DF8602"));
+//                        btnReset.setVisibility(View.VISIBLE);
+//                    }
+//
+//                }
+//
+//
+//            }
+//
+//
+//            @Override
+//            public void onCancelled(@NonNull DatabaseError databaseError) {
+//
+//            }
+//        });
+//        //
 
 btnReset.setOnClickListener(new View.OnClickListener() {
     @Override
@@ -209,7 +234,7 @@ btnReset.setOnClickListener(new View.OnClickListener() {
             }
         });
 
-        dref.addListenerForSingleValueEvent(new ValueEventListener() {
+        dref.addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
                 statuss= Double.parseDouble(dataSnapshot.child("Eggs").child("amount").getValue().toString());
@@ -217,25 +242,26 @@ btnReset.setOnClickListener(new View.OnClickListener() {
               //  String  fruitss=dataSnapshot.child("Threshhold/Eggs/value").getValue().toString();
                // Toast.makeText(EggsActivity.this, "Value"+fruitss, Toast.LENGTH_SHORT).show();
                 int a =(int) Math.round(statuss);
+                thresholdComparison=a;
                // Toast.makeText(EggsActivity.this, "Int Value...."+a, Toast.LENGTH_SHORT).show();
-                if(a>=6&&a<12) {
+                if(a>=3&&a<=12) {
                     status= String.valueOf("1");
-                } else if (a>13&&a<20){
+                } else if (a>=13&&a<=20){
                     status= String.valueOf("2");
-                }else if (a>20&&a<29){
+                }else if (a>20&&a<=29){
                     status= String.valueOf("3");
-                }else if (a>30&&a<38){
+                }else if (a>=30&&a<=38){
                     status= String.valueOf("4");
-                }else if (a>39&&a<46){
+                }else if (a>=39&&a<=46){
                     status= String.valueOf("5");
-                }else if (a>46&&a<55){
+                }else if (a>46&&a<=55){
                     status= String.valueOf("6");
                 } else {
                     status= String.valueOf(a);
                 }
 
                 txtRemaining.setText(status);
-                thresholdComparison=parseInt(String.valueOf(status));
+
                 used=6-parseInt(status);
                 txtUsed.setText(Integer.toString(used));
                 //  AddData();
@@ -243,7 +269,7 @@ btnReset.setOnClickListener(new View.OnClickListener() {
                     if(notificationStatus.equals("ON"))
                     {
                         //  onReceive();
-                        scheduleNotification(getNotification( "Smart Refrigerator Alert" ) , 5000 ) ;
+                        scheduleNotification(getNotification( "Smart Refrigerator Alert" ) , 3000 ) ;
                         saveNotificationfirebase();
                     }else{
                         saveNotificationfirebase();
@@ -307,6 +333,21 @@ btnReset.setOnClickListener(new View.OnClickListener() {
         builder.setTicker("Eggs");
         builder.setContentTitle("Eggs amount Below Th");
         builder.setContentText("Please Refill Eggs Box");
+        builder.setSmallIcon(R.drawable. ic_launcher_foreground ) ;
+        builder.setAutoCancel( true ) ;
+        builder.setChannelId( NOTIFICATION_CHANNEL_ID ) ;
+        return builder.build() ;
+
+    }
+    private Notification getNotification2 (String content) {
+        NotificationCompat.Builder builder = new NotificationCompat.Builder( this, default_notification_channel_id ) ;
+        builder.setContentTitle( "Egg Expired" ) ;
+        Intent intent = new Intent(this, Notification2.class);
+        PendingIntent pendingIntent = PendingIntent.getActivity(this, 0, intent, 0);
+        builder.setContentIntent(pendingIntent);
+        builder.setTicker("Eggs");
+        builder.setContentTitle("Eggs Expired");
+        builder.setContentText("Please Destroy the Egg");
         builder.setSmallIcon(R.drawable. ic_launcher_foreground ) ;
         builder.setAutoCancel( true ) ;
         builder.setChannelId( NOTIFICATION_CHANNEL_ID ) ;
