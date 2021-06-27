@@ -49,6 +49,7 @@ public class EggsActivity extends BaseClass {
     DatabaseReference dref= FirebaseDatabase.getInstance().getReference();
     TextView txtRemaining, txtUsed ,txtExpirayStatus, thresholdValue,txtSeconds,txtMinutes,txtHours;
     String status,notificationStatus;
+    double statuss;
     int used;
     int thresholdComparison;
     double thresholdValues;
@@ -210,19 +211,31 @@ btnReset.setOnClickListener(new View.OnClickListener() {
         dref.addListenerForSingleValueEvent(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
-                status=dataSnapshot.child("Eggs").child("amount").getValue().toString();
+                statuss= Double.parseDouble(dataSnapshot.child("Eggs").child("amount").getValue().toString());
+               // status=dataSnapshot.child("Eggs").child("amount").getValue().toString();
               //  String  fruitss=dataSnapshot.child("Threshhold/Eggs/value").getValue().toString();
                // Toast.makeText(EggsActivity.this, "Value"+fruitss, Toast.LENGTH_SHORT).show();
+                int a =(int) Math.round(statuss);
+                Toast.makeText(EggsActivity.this, "Int Value...."+a, Toast.LENGTH_SHORT).show();
+                if(a>=6&&a<12) {
+                    status= String.valueOf("1");
+                } else if (a>13&&a<20){
+                    status= String.valueOf("2");
+                }else if (a>20&&a<29){
+                    status= String.valueOf("3");
+                }else if (a>30&&a<38){
+                    status= String.valueOf("4");
+                }else if (a>39&&a<46){
+                    status= String.valueOf("5");
+                }else if (a>46&&a<55){
+                    status= String.valueOf("6");
+                } else {
+                    status= String.valueOf(a);
+                }
+
                 txtRemaining.setText(status);
-                thresholdComparison=parseInt(status);
-                // String value=thresholdValue.getText().toString();
-
-                // thresholddata= parseInt(value);
-             //   thresholddata = Integer.parseInt(fruit);
-
-                //Compare threshold value and generate alert
-
-                used=12-parseInt(status);
+                thresholdComparison=parseInt(String.valueOf(status));
+                used=6-parseInt(status);
                 txtUsed.setText(Integer.toString(used));
                 //  AddData();
                 if(thresholdValues>thresholdComparison){
